@@ -18,8 +18,13 @@ Requesitos e funcionalidades
 7.	Apresentar a informação da(s) venda(s) preço mais baixo;
 8. 
 */
-int main(){
+void main(){
 	setlocale(LC_ALL, "portuguese");
 	printf("Bem Vindo a padaria P90\n");//mensagem de boas vindas
 	printf("Insira o seu nome:");//pedir o nome da pessoa para guardar as informações
+}
+
+void menu(){
+	printf("****Menu****");
+	
 }
