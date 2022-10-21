@@ -26,13 +26,51 @@ com custo inferior a 12€, e 19% sobre as restantes.
 	- O total de imposto (19%) a pagar dessa categoria;
 	* Apresentar os totais da informação apresentada acerca de cada categoria.
 */
+void menu(){
+	system("cls");
+	int escolha=0;
+	while(1){
+		printf("---------Menu--------");
+		printf("\nPrima 1 para ver historico de vendas.");
+		printf("\nPrima 2 para ver as categorias e stock de produtos.");
+		printf("\nPrima 3 para executar uma venda.");
+		printf("\nEscolha: ");
+		scanf("%i",&escolha);
+		switch(escolha){
+			case 1:
+				ref_vend();
+			break;
+			
+			case 2:
+				qnt_prod();
+			break;
+			
+			default:
+				printf("\nOperação invalida ;-;");
+			break;
+		}
+	}
+}
+int ref_vend(){
+	system("cls");
+	int ref=0;
+	printf("insira o seu numero de cliente: ");
+	scanf("%i",&ref);
+	return 0;
+}
+int qnt_prod(){
+	system("cls");
+	int escolha=0;
+	printf("\nExistem %i de produtos de padaria.");
+	printf("\nExistem %i de produtos de bebidas.");
+	printf("\nExistem %i de produtos de gelados.");
+	printf("\nExistem %i de produtos de confeitaria.");
+	
+}
 void main(){
 	setlocale(LC_ALL, "portuguese");
 	printf("Bem Vindo a padaria P90\n");//mensagem de boas vindas
-	printf("Insira o seu nome:");//pedir o nome da pessoa para guardar as informações
+	menu();
 }
 
-void menu(){
-	printf("****Menu****");
-	
-}
+
