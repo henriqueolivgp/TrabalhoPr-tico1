@@ -3,10 +3,10 @@
 #include <locale.h>
 /*
 Implementações:
-1.	referencia de venda;
-2.	identificação de cliente
-4.	quantidades
-5. categorias de produtos ex(gelados, bebidas, confeitarias e padaria....)
+1.	Referencia de venda;
+2.	Identificação de cliente; com referencia nueraria ex: cliente Nº1...
+4.	Quantidades
+5. 	Categorias de produtos ex(gelados, bebidas, confeitarias e padaria....)
 -----------------------------------------------------------------------------
 Requesitos e funcionalidades
 1.	Introduzir a informação sobre uma venda;
@@ -16,7 +16,15 @@ Requesitos e funcionalidades
 5.	Calcualr quantidade de vendas e total ganho em vendas de uma determinada categoria selecionada;
 6.	Calcular a media dos preços das vendasd da padaria;
 7.	Apresentar a informação da(s) venda(s) preço mais baixo;
-8. 
+Observação:
+No final do ano a empresa deve pagar um imposto de 15% sobre todas as vendas
+com custo inferior a 12€, e 19% sobre as restantes.
+8.	Para cada categoria com vendas feitas apresentar:
+	- A quantidade de vendas;
+	- O total gerado por essas vendas;
+	- O total de imoposto(15%) a pagar dessa categoria;
+	- O total de imposto (19%) a pagar dessa categoria;
+	* Apresentar os totais da informação apresentada acerca de cada categoria.
 */
 void main(){
 	setlocale(LC_ALL, "portuguese");
