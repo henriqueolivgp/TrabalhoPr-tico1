@@ -47,7 +47,6 @@ void menu(){
 			
 			default:
 				printf("\nOperação invalida ;-;");
-				system("cls");
 			break;
 		}
 	}
