@@ -1,30 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-/*
-Implementações:
-1.	referencia de venda;
-2.	identificação de cliente
-4.	quantidades
-5. categorias de produtos ex(gelados, bebidas, confeitarias e padaria....)
------------------------------------------------------------------------------
-Requesitos e funcionalidades
-1.	Introduzir a informação sobre uma venda;
-2.	Listar informações sobre todas as vendas de um cliente;
-3.	Modificar o preço e/ou quantidade de vendas de um dado cliente;
-4.	Listar categorias, selecionar categoria e ver as vendas de cada categoria;
-5.	Calcualr quantidade de vendas e total ganho em vendas de uma determinada categoria selecionada;
-6.	Calcular a media dos preços das vendasd da padaria;
-7.	Apresentar a informação da(s) venda(s) preço mais baixo;
-8. 
-*/
-void main(){
-	setlocale(LC_ALL, "portuguese");
-	printf("Bem Vindo a padaria P90\n");//mensagem de boas vindas
-	printf("Insira o seu nome:");//pedir o nome da pessoa para guardar as informações
-}
+#include <string.h>
+#include <conio.h>
+#define Clientes [15]
+
 
 void menu(){
-	printf("****Menu****");
+	
+	int op = 0;
+	
+	printf("\n     	     Menu	    ");
+	printf("\nPor favor escolha a opcao que deseja com numeros");
+	printf("\n\n1 -> Introduzir uma nova venda");
+	printf("\n2 -> Listar a informacao de todas as vendas");
+	
+	printf("\nOp: ");
+	scanf("%i", &op);
+	
+	switch(op){
+		
+		case 1:{
+			novaVenda();
+			menu();
+			break;
+		}
+		
+		case 2:{
+			break;
+		}
+	}
+	
+}
+
+void novaVenda(){
+	
+	//Define Variables
+	int ref[15];
+	int i;
+	int cliente;//teste
+	
+	printf("\nIntroduza uma nova venda");
+	scanf("%i", cliente);
+	
+	
+}
+
+//Main function
+void main() {
+	
+	printf("----Vendas de uma Padaria----");
+	
+	menu();
 	
 }
