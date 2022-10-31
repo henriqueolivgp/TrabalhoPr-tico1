@@ -25,23 +25,22 @@ int prog_categ(){
 			printf("\n|\ Gelados /|.");
 			printf("\nTem %i no stock de gelados",g);
 			printf("\nDeseja adicionar ou retirar?\n");
-			printf("Adicionar: ----===+===----");
-			printf("Retirar: ----===-===---- \n");
+			printf("Adicionar: +");
+			printf("\\|-|/|retirar \n");
 			printf("Escolha: ");
 			scanf(" %c", &alterar);
 			if(alterar == '-'){
 				printf("\nQuantidade a retirar: ");
 				scanf("%i", &x);
-				s=s-x;
+				g=g-x;
 			}if(alterar == '+'){
 				printf("\nQuantidade a adicionar: ");
 				scanf("%i",&x);
-				s=s+x;
+				g=g+x;
 			}
 			system("cls");
-			printf("\nAgora tem %i no stock de sapatos",s);
+			printf("\nAgora tem %i no stock de gelados",s);
 			printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
-			
 			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
 			scanf("%i",&cert);
 			if(cert==1){
@@ -55,13 +54,18 @@ int prog_categ(){
 		case 'c':
 			system("cls");
 			printf("\nCamisolas.");
-			printf("\nTem %i no stock de camisolas",c);
-			printf("\nDeseja adicionar ou retirar?\nAdicionar: ----===+===----\nRetirar: ----===-===---- \nEscolha: ");
+			printf("\nTem %i no stock de confeitaria",c);
+			printf("\nDeseja adicionar ou retirar?");
+			printf("Adicionar: ----===+===----\n
+			
+			printf("Escolha: ");
 			scanf(" %c", &alterar);
 			if(alterar == '-'){
 				printf("\nQuantidade a retirar: ");
 				scanf("%i", &x);
-				c=c-x;
+				c=c
+				
+				-x;
 			}if(alterar == '+'){
 				printf("\nQuantidade a adicionar: ");
 				scanf("%i",&x);
@@ -190,13 +194,15 @@ void menu(){
 	
 	switch(op){
 		
-		case 1:{
+		case 1:
 			novaVenda();
-			break;
-		}
+			menu()<
+		break;
 		
-		case 2:{
-			break;
+		
+		case 2:
+			
+		break;
 		}
 	}
 	
@@ -213,15 +219,16 @@ void novaVenda(){
 	scanf("%i", cliente);
 }
 
-void categorias;{
+void categorias(){
 	//mudar o stock de cada categoria
-	
 }
-
+	
+	
 //Main function
 void main() {
 	
 	printf("----Vendas de uma Padaria----");
+	
 	
 	menu();
 	
