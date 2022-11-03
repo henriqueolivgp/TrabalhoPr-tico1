@@ -6,7 +6,10 @@
 #define Clientes [15]
 
 int g /*gelados*/ = 78, c /*confeiaria*/ = 35, p /*padaria*/ = 65, b /*bebidas*/ = 30; //define as variaveis que representa as categorias.
-float p_g = 0, p_c = 0, p_p = 0, p_b = 0; //define as variaveis globais que vao armazenar o preço das categorias.
+float p_g = 1.5, p_c = , p_p = 0, p_b = 0; //define as variaveis globais que vao armazenar o preço das categorias.
+int tot_de_compras=0, tot_de_comp_inf_12=0, tot_comp_sup_12=0;//total de diferentes tipos de compras
+float val_tot_comp=0;val_tot_com_inf=0,val_tot_sup=0;//valor total de dinheiro gasto em tipos
+float media=0, imp_menor=0, imp_maior=0;//medias e impostos
 
 int prog_categ(){
 	char categoria;
@@ -25,8 +28,8 @@ int prog_categ(){
 			printf("\n|\ Gelados /|.");
 			printf("\nTem %i no stock de gelados",g);
 			printf("\nDeseja adicionar ou retirar?\n");
-			printf("Adicionar: +");
-			printf("\\|-|/|retirar \n");
+			printf("\\|+|/|Adicionar|");
+			printf("\\|-|/|retirar|\n");
 			printf("Escolha: ");
 			scanf(" %c", &alterar);
 			if(alterar == '-'){
@@ -53,11 +56,11 @@ int prog_categ(){
 		
 		case 'c':
 			system("cls");
-			printf("\nCamisolas.");
+			printf("\nConfeitaria.");
 			printf("\nTem %i no stock de confeitaria",c);
 			printf("\nDeseja adicionar ou retirar?");
-			printf("Adicionar: ----===+===----\n
-			
+			printf("\\|+|/|Adicionar|");
+			printf("\\|-|/|retirar|\n");
 			printf("Escolha: ");
 			scanf(" %c", &alterar);
 			if(alterar == '-'){
@@ -72,10 +75,10 @@ int prog_categ(){
 				c=c+x;
 			}
 			system("cls");
-			printf("\nAgora tem %i no stock de camisolas",c);
+			printf("\nAgora tem %i no stock de confeitaria",c);
 			printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
-			
-			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
+			printf("\n|1 = SIM|0 = NÃO|");
+			printf("\nEscolha: ");
 			scanf("%i",&cert);
 			if(cert==1){
 				prog_categ();
@@ -84,11 +87,14 @@ int prog_categ(){
 			}
 		break;
 		
-		case 'p':
+		case 'b':
 			system("cls");
-			printf("\nCalças.");
-			printf("\nTem %i no stock de sapatos",d);
-			printf("\nDeseja adicionar ou retirar?\nAdicionar: ----===+===----\nRetirar: ----===-===---- \nEscolha: ");
+			printf("\nBebidas");
+			printf("\nTem %i no stock de Bebidas",d);
+			printf("\nDeseja adicionar ou retirar?");
+			printf("\n\|+|/|Adicionar|");
+			printf("\n\|-|/|retirar|\n");
+			prinf("\nEscolha")
 			scanf(" %c", &alterar);
 			if(alterar == '-'){
 				printf("\nQuantidade a retirar: ");
@@ -111,10 +117,10 @@ int prog_categ(){
 				main();
 			}
 		break;
-		case 'b':
+		case 'p':
 				system("cls");
-				printf("\nAcessórios.");
-				printf("\nTem %i no stock de acessórios",a);
+				printf("\nPadaria.");
+				printf("\nTem %i no stock de padaria",a);
 				printf("\nDeseja adicionar ou retirar?\nAdicionar: ----===+===----\nRetirar: ----===-===---- \nEscolha: ");
 				scanf(" %c", &alterar);
 				if(alterar == '-'){
@@ -127,7 +133,7 @@ int prog_categ(){
 					a=a+x;
 				}
 				system("cls");
-				printf("\nAgora tem %i no stock de acessórios",a);
+				printf("\nAgora tem %i no stock de padaria",a);
 				printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
 				
 				printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
@@ -149,25 +155,25 @@ int menu_ven(){//menu de venda
 	switch(categoria){
 		
 		case 's':
-			printf("\nCalçado.");
-			printf("\nEm stock temos %i.", s);
+			printf("\nGelados.");
+			printf("\nEm stock temos %i.", g);
 			printf("\nQuantos P");
 			
 		break;
 		
 		case 'c':
-			printf("\nCamisolas.");
+			printf("\nConfeitaria.");
 			printf("\nEm stock temos %i.", c);
 		break;
 		
 		case 'd':
-			printf("\nCalças.");
-			printf("\nEm stock temos %i.", d);
+			printf("\nBebidas.");
+			printf("\nEm stock temos %i.", b);
 		break;
 		
 		case 'a':
-			printf("\nAcessórios.");
-			printf("\nEm stock temos %i.", a);
+			printf("\nPadaria.");
+			printf("\nEm stock temos %i.", p);
 		break;
 	}
 }
@@ -188,7 +194,9 @@ void menu(){
 	printf("\nPor favor escolha a opcao que deseja com numeros");
 	printf("\n\n1 -> Introduzir uma nova venda");
 	printf("\n2 -> Listar a informacao de todas as vendas");
-	
+	printf("\n3 -> Ver stock/Aterar stock");
+	printf("\n4 -> Introduzir uma venda(maneira simples sem referencia)");
+	printf("\n5 -> Ver os impostos e médias");
 	printf("\nOp: ");
 	scanf("%i", &op);
 	
