@@ -6,11 +6,12 @@
 #define Clientes [15]
 
 int g /*gelados*/ = 78, c /*confeiaria*/ = 35, p /*padaria*/ = 65, b /*bebidas*/ = 30; //define as variaveis que representa as categorias.
-float p_g = 1.5, p_c = , p_p = 0, p_b = 0; //define as variaveis globais que vao armazenar o preço das categorias.
+float p_g = 1.5, p_c = 0.20, p_p = 0.45, p_b = 0.50; //define as variaveis globais que vao armazenar o preço das categorias.
 int tot_de_compras=0, tot_de_comp_inf_12=0, tot_comp_sup_12=0;//total de diferentes tipos de compras
-float val_tot_comp=0;val_tot_com_inf=0,val_tot_sup=0;//valor total de dinheiro gasto em tipos
+float val_tot_comp=0,val_tot_com_inf=0,val_tot_sup=0;//valor total de dinheiro gasto em tipos
 float media=0, imp_menor=0, imp_maior=0;//medias e impostos
 
+//menu de alteração de stock
 int prog_categ(){
 	char categoria;
 	char alterar='\0',certa;
@@ -25,7 +26,7 @@ int prog_categ(){
 		
 		case 'g':
 			system("cls");
-			printf("\n|\ Gelados /|.");
+			printf("\n Gelados /|");
 			printf("\nTem %i no stock de gelados",g);
 			printf("\nDeseja adicionar ou retirar?\n");
 			printf("\\|+|/|Adicionar|");
@@ -42,7 +43,7 @@ int prog_categ(){
 				g=g+x;
 			}
 			system("cls");
-			printf("\nAgora tem %i no stock de gelados",s);
+			printf("\nAgora tem %i no stock de gelados",g);
 			printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
 			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
 			scanf("%i",&cert);
@@ -83,57 +84,56 @@ int prog_categ(){
 			if(cert==1){
 				prog_categ();
 			}else{
-				main();
+				menu();
 			}
 		break;
 		
 		case 'b':
 			system("cls");
 			printf("\nBebidas");
-			printf("\nTem %i no stock de Bebidas",d);
+			printf("\nTem %i no stock de Bebidas",b);
 			printf("\nDeseja adicionar ou retirar?");
-			printf("\n\|+|/|Adicionar|");
-			printf("\n\|-|/|retirar|\n");
-			prinf("\nEscolha")
+			printf("\n|+|/|Adicionar|");
+			printf("\n|-|/|retirar|\n");
+			printf("\nEscolha");
 			scanf(" %c", &alterar);
 			if(alterar == '-'){
 				printf("\nQuantidade a retirar: ");
 				scanf("%i", &x);
-				d=d-x;
+				b=b-x;
 			}if(alterar == '+'){
 				printf("\nQuantidade a adicionar: ");
 				scanf("%i",&x);
-				d=d+x;
+				b=b+x;
 			}
 			system("cls");
-			printf("\nAgora tem %i no stock de calças",d);
-			printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
-			
+			printf("\nAgora tem %i no stock de calças",b);
+			printf("\nDeseja fazer mais alguma alteração numa outra categoria?");			
 			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
 			scanf("%i",&cert);
 			if(cert==1){
 				prog_categ();
 			}else{
-				main();
+				manu();
 			}
 		break;
 		case 'p':
 				system("cls");
 				printf("\nPadaria.");
-				printf("\nTem %i no stock de padaria",a);
+				printf("\nTem %i no stock de padaria",p);
 				printf("\nDeseja adicionar ou retirar?\nAdicionar: ----===+===----\nRetirar: ----===-===---- \nEscolha: ");
 				scanf(" %c", &alterar);
 				if(alterar == '-'){
 					printf("\nQuantidade a retirar: ");
 					scanf("%i", &x);
-					a=a-x;
+					p=p-x;
 				}if(alterar == '+'){
 					printf("\nQuantidade a adicionar: ");
 					scanf("%i",&x);
-					a=a+x;
+					p=p+x;
 				}
 				system("cls");
-				printf("\nAgora tem %i no stock de padaria",a);
+				printf("\nAgora tem %i no stock de padaria",p);
 				printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
 				
 				printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
@@ -146,15 +146,15 @@ int prog_categ(){
 			break;
 	}
 }
-
-int menu_ven(){//menu de venda
+//menu de venda
+int menu_ven(){
 	char categ;
+
 	printf("\nSelecione a categoria:");
-	
-	scanf(" %c", &categoria);
-	switch(categoria){
+	scanf(" %c", &categ);
+	switch(categ){
 		
-		case 's':
+		case 'g':
 			printf("\nGelados.");
 			printf("\nEm stock temos %i.", g);
 			printf("\nQuantos P");
@@ -166,18 +166,61 @@ int menu_ven(){//menu de venda
 			printf("\nEm stock temos %i.", c);
 		break;
 		
-		case 'd':
+		case 'b':
 			printf("\nBebidas.");
 			printf("\nEm stock temos %i.", b);
 		break;
 		
-		case 'a':
+		case 'p':
 			printf("\nPadaria.");
 			printf("\nEm stock temos %i.", p);
 		break;
 	}
 }
-
+void prog_precario(){
+	char escolha=0;
+	int esc;
+	int cert=0;
+	float p_temp=0;//preço temporario
+	printf("\n|Qual a categoria que deseja mudar de preço?|");
+	printf("\n|\'g'/|-Gelados-|");
+	printf("\n|\'b'/|-Bebidas-|");
+	printf("\n|\'p'/|-Padaria-|");
+	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|-Escolha-| ");
+	scanf(" %c",&escolha);
+	switch(escolha){
+		case 'g':
+			system("cls");
+			printf("\nSelecionou a categoria gelados.");
+			printf("\nO preço atual dos gelados é de %.2f", p_g);
+			printf("\nQual é o preço que deseja que seja?");
+			printf("\nValor: ");
+			scanf("%f",p_temp);
+			printf("\nO preço que antes era %.2f euros vai passar a ser %.2f euros");
+			printf("\nDeseja mesmo fazer a alteração?");
+			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
+			scanf("%i",&cert);
+			if(cert==1){
+				p_g=p_temp;
+			}else{
+				printf("\nOs valores não foram alterados o preço dos gelados continua %i",p_g);
+				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
+				printf("\n1 -> Voltar ao menu inicial");
+				printf("\n2 -> Mudar preçario de alguma categoria");
+				scanf("%i",&esc);
+				switch(esc){
+					case 1:
+						menu();
+					break;
+					
+					case 2:
+						prog_precario();
+					break;
+				}
+			}
+	}
+}
 int prog_hist_vend(){
 }
 
@@ -185,11 +228,21 @@ int prog_hist_vend(){
 
 int prog_cliente(){
 }
+void prog_imp(){
+}
+void novaVenda(){
+	
+	//Define Variables
+	int ref[15];
+	int i;
+	int cliente;//teste
+	
+	printf("\nIntroduza uma nova venda");
+	scanf("%i", cliente);
 
 void menu(){
 	
 	int op = 0;
-	
 	printf("\n     	     Menu	    ");
 	printf("\nPor favor escolha a opcao que deseja com numeros");
 	printf("\n\n1 -> Introduzir uma nova venda");
@@ -204,36 +257,28 @@ void menu(){
 		
 		case 1:
 			novaVenda();
-			menu()<
+			menu();
 		break;
-		
-		
+
 		case 2:
-			
+			prog_hist_vend();
 		break;
+		
+		case 3:
+			prog_categ();
+		break;
+		case 4:
+			prog_imp();
 		}
 	}
 	
-}
 
-void novaVenda(){
-	
-	//Define Variables
-	int ref[15];
-	int i;
-	int cliente;//teste
-	
-	printf("\nIntroduza uma nova venda");
-	scanf("%i", cliente);
-}
 
-void categorias(){
-	//mudar o stock de cada categoria
-}
-	
+
+}	
 	
 //Main function
-void main() {
+int main() {
 	
 	printf("----Vendas de uma Padaria----");
 	
