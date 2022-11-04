@@ -4,12 +4,19 @@
 #include <string.h>
 #include <conio.h>
 #define Clientes [15]
-
+#define max 30
 int g /*gelados*/ = 78, c /*confeiaria*/ = 35, p /*padaria*/ = 65, b /*bebidas*/ = 30; //define as variaveis que representa as categorias.
 float p_g = 1.5, p_c = 0.20, p_p = 0.45, p_b = 0.50; //define as variaveis globais que vao armazenar o preço das categorias.
 int tot_de_compras=0, tot_de_comp_inf_12=0, tot_comp_sup_12=0;//total de diferentes tipos de compras
 float val_tot_comp=0,val_tot_com_inf=0,val_tot_sup=0;//valor total de dinheiro gasto em tipos
 float media=0, imp_menor=0, imp_maior=0;//medias e impostos
+int cliente[max],num_vend[max],qnt_prod_vend[max];
+float val_venda[max];
+char categ[max];
+int i=0;
+
+
+void menu(void);
 
 //menu de alteração de stock
 int prog_categ(){
@@ -67,9 +74,7 @@ int prog_categ(){
 			if(alterar == '-'){
 				printf("\nQuantidade a retirar: ");
 				scanf("%i", &x);
-				c=c
-				
-				-x;
+				c=c-x;
 			}if(alterar == '+'){
 				printf("\nQuantidade a adicionar: ");
 				scanf("%i",&x);
@@ -114,7 +119,7 @@ int prog_categ(){
 			if(cert==1){
 				prog_categ();
 			}else{
-				manu();
+				menu();
 			}
 		break;
 		case 'p':
@@ -141,23 +146,45 @@ int prog_categ(){
 				if(cert==1){
 					prog_categ();
 				}else{
-					main();
+					menu();
 				}
 			break;
 	}
 }
-//menu de venda
-int menu_ven(){
-	char categ;
 
-	printf("\nSelecione a categoria:");
-	scanf(" %c", &categ);
+//menu de venda
+int menu_venda(){
+	int qnt_produtos=0;
+	float preco_final=0;
+	char categ;
+	printf("\n|Qual a categoria que deseja mudar de preço?|");
+	printf("\n|\'g'/|-Gelados-|");
+	printf("\n|\'b'/|-Bebidas-|");
+	printf("\n|\'p'/|-Padaria-|");
+	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|-Escolha-| ");
+	scanf(" %c",&escolha);
 	switch(categ){
 		
 		case 'g':
 			printf("\nGelados.");
 			printf("\nEm stock temos %i.", g);
-			printf("\nQuantos P");
+			printf("\nQuantos deseja comprar?");
+			scanf("%i",&qnt_produtos);
+			if(qnt_produtos*p_g<12){
+				g=g-qnt_produtos
+				preco_final=p_g*qnt_produtos
+				printf("\nA sua compra ficou em %.2f");
+				printf("\nPasse o cartão");
+				printf("\nCompra aprovada");
+				tot_de_compra++;
+				tot_com_inf++;
+				val_venda[i]=preco_final;
+				qnt_prod_vend[i]=qnt_produtos;
+			}else if(qnt_produtos>12){
+				g=g-qnt_produtos
+					
+			}
 			
 		break;
 		
@@ -177,6 +204,7 @@ int menu_ven(){
 		break;
 	}
 }
+
 void prog_precario(){
 	char escolha=0;
 	int esc;
@@ -221,27 +249,31 @@ void prog_precario(){
 			}
 	}
 }
+
+
+
 int prog_hist_vend(){
+	int x=0;
+	for(x=0;i<tot_de_compras;x++){
+		printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c", compra[x],cliente[x],qnt_comp[x],categ[x]);
+	}
 }
 
 
-
-int prog_cliente(){
-}
 void prog_imp(){
 }
+
 void novaVenda(){
 	
 	//Define Variables
-	int ref[15];
-	int i;
-	int cliente;//teste
-	
 	printf("\nIntroduza uma nova venda");
-	scanf("%i", cliente);
+	printf("\nInsira a sua referencia: ");
+	scanf("%i",&cliente[i]);
+	menu_venda();
+	i++;
+}
 
 void menu(){
-	
 	int op = 0;
 	printf("\n     	     Menu	    ");
 	printf("\nPor favor escolha a opcao que deseja com numeros");
@@ -268,21 +300,16 @@ void menu(){
 			prog_categ();
 		break;
 		case 4:
-			prog_imp();
+			menu_venda();
+		break;
 		}
 	}
 	
-
-
-
-}	
 	
 //Main function
-int main() {
-	
+int main(){
+	while(1){
 	printf("----Vendas de uma Padaria----");
-	
-	
 	menu();
-	
+	}
 }
