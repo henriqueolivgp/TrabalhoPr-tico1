@@ -16,6 +16,7 @@ char categ[max];
 int i=0;
 
 
+
 void menu(void);
 
 //menu de alteração de stock
