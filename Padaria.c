@@ -3,7 +3,6 @@
 #include <locale.h>
 #include <string.h>
 #include <conio.h>
-#define Clientes [15]
 #define max 30
 int g /*gelados*/ = 78, c /*confeiaria*/ = 35, p /*padaria*/ = 65, b /*bebidas*/ = 30; //define as variaveis que representa as categorias.
 float p_g = 1.5, p_c = 0.20, p_p = 0.45, p_b = 0.50; //define as variaveis globais que vao armazenar o preço das categorias.
@@ -461,10 +460,10 @@ int prog_hist_vend(){
 	system("cls");
 	int x=0,ce=0;
 	for(x=0;x<tot_de_compras;x++){
-		printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.", num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
+		printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.", i,cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 	}
 	printf("\nPara voltar para o menu inicial digite 1\n");
-	scanf("%i",&ce)
+	scanf("%i",&ce);
 }
 
 
@@ -478,6 +477,7 @@ void novaVenda(){
 	printf("\nInsira a sua referencia: ");
 	scanf("%i",&cliente[i]);
 	menu_venda();
+	
 }
 
 void menu(){
