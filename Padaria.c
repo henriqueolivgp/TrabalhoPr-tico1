@@ -21,6 +21,24 @@ int p_v_c = 0; //Quantidade de produtos vendidos na categoria Confeitaria
 int p_v_p = 0; //Quantidade de produtos vendidos na categoria Padaria
 int p_v_b = 0; //Quantidade de produtos vendidos na categoria Bebida
 
+//Quantidade de vendas para cada categoria
+int q_v_g = 0; //Quantidade de vendas na categoria Gelados
+int q_v_c = 0; //Quantidade de vendas na categoria Confeitaria
+int q_v_p = 0; //Quantidade de vendas na categoria Padaria
+int q_v_b = 0; //Quantidade de vendas na categoria Bebida
+
+//Quantidade de vendas individuais superiores a 12€
+int q_v_sup_12_g = 0; //Quantidade de vendas superiores a 12€ na categoria Gelados
+int q_v_sup_12_c = 0; //Quantidade de vendas superiores a 12€ na categoria Confeitaria
+int q_v_sup_12_p = 0; //Quantidade de vendas superiores a 12€ na categoria Padaria
+int q_v_sup_12_b = 0; //Quantidade de vendas superiores a 12€ na categoria Bebida
+
+//Quantidade de vendas individuais inferiores a 12€
+int q_v_inf_12_g = 0; //Quantidade de vendas inferiores a 12€ na categoria Gelados
+int q_v_inf_12_c = 0; //Quantidade de vendas inferiores a 12€ na categoria Confeitaria
+int q_v_inf_12_p = 0; //Quantidade de vendas inferiores a 12€ na categoria Padaria
+int q_v_inf_12_b = 0; //Quantidade de vendas inferiores a 12€ na categoria Bebida
+
 //Totais de compras
 int tot_de_compras=0; //Numero total de copras feitas
 int tot_de_comp_inf_12=0; //Numero total de compras feitas inferiorres a 12€
@@ -43,6 +61,7 @@ int i=0;//indice das vareaveis
 
 void menu(void);
 void compra_finalizada(void);
+
 
 //menu de alteração de stock
 int prog_categ(){
@@ -181,7 +200,45 @@ int prog_categ(){
 			break;
 	}
 }
-
+//Menu que mostra os impostos e informações de cada categoria individual
+void prog_impostos_categ(){
+	int escolha=0;
+	float media_prod_vend=0;
+	float media_precos=0;
+	printf("\nQual categoria deseja analisar?");
+	printf("\n|\'g'/|-Gelados-|");
+	printf("\n|\'b'/|-Bebidas-|");
+	printf("\n|\'p'/|-Padaria-|");
+	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|-Escolha-| ");
+	scanf(" %c",&escolha);
+	switch(escolha){
+		case 'g'||'G':
+			media_prod_vend=p_v_g/q_v_G;
+			media_precos=()
+			printf("\nGelados");
+			printf("\nNumero total de vendas: %i",q_v_g);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_g);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_sup_12_g);
+			printf("\n")
+			printf("\nQuantidade de produtos vendidos: %i",p_v_g);
+			printf("\nMedia de produtos vendidos: %.2f", media_prod_vend);
+			printf("\nMédia de preço: ");
+		break;
+		
+		case 'b'||'B':
+			media_prod_vend=p_v_g/q_v_G;
+			
+			printf("\nBebidas");
+			printf("\nNumero total de vendas: %i",q_v_b );
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_b);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_sup_12_b);
+			printf("\nQuantidade de produtos vendidos: %i",p_v_b);
+			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
+			printf("\nMédia de preços: ");
+		break;	
+	}
+}
 //menu de venda
 int menu_venda(){
 	int qnt_produtos=0,pin=0;
@@ -210,6 +267,8 @@ int menu_venda(){
 				g=g-qnt_produtos;
 				p_v_g=p_v_g+qnt_produtos;
 				tot_de_compras++;
+				q_v_g++;
+				q_v_inf_12_g++;
 				tot_de_comp_inf_12++;
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				val_venda[i]=preco_final;
@@ -223,8 +282,10 @@ int menu_venda(){
 				scanf("%i",&pin);
 				printf("\nCompra aprovada");
 				g=g-qnt_produtos;
+				q_v_g++;
 				p_v_g=p_v_g+qnt_produtos;
 				tot_de_compras++;
+				q_v_sup_12_g++;
 				val_tot_sup=val_tot_sup+preco_final;
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
@@ -251,6 +312,8 @@ int menu_venda(){
 				tot_de_compras++;
 				p_v_c=p_v_c+qnt_produtos;
 				tot_de_comp_inf_12++;
+				q_v_c++;
+				q_v_inf_12_c++;
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
@@ -266,6 +329,8 @@ int menu_venda(){
 				tot_de_compras++;
 				p_v_c=p_v_c+qnt_produtos;
 				tot_de_comp_sup_12++;
+				q_v_c++;
+				q_v_sup_12_c++;
 				val_tot_sup=val_tot_sup+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
@@ -290,6 +355,8 @@ int menu_venda(){
 				tot_de_compras++;
 				p_v_b=p_v_b+qnt_produtos;
 				tot_de_comp_inf_12++;
+				q_v_b++;
+				q_v_inf_12_b++;
 				val_venda[i]=preco_final;
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
@@ -305,6 +372,8 @@ int menu_venda(){
 				tot_de_compras++;
 				p_v_b=p_v_b+qnt_produtos;
 				tot_de_comp_sup_12++;
+				q_v_b++;
+				q_v_sup_12_b++;
 				val_tot_sup=val_tot_sup+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
@@ -329,6 +398,8 @@ int menu_venda(){
 				tot_de_compras++;
 				p_v_p=p_v_p+qnt_produtos;
 				tot_de_comp_inf_12++;
+				q_v_p++;
+				q_v_inf_12_p++;
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
@@ -343,6 +414,8 @@ int menu_venda(){
 				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_p=p_v_p+qnt_produtos;
+				q_v_p++;
+				q_v_sup_12_p++;
 				val_tot_sup=val_tot_sup+preco_final;
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
@@ -352,12 +425,13 @@ int menu_venda(){
 		}
 	}
 }
-
+//Função onde executa o termino defenitivo da venda
 void compra_finalizada(){
+	num_vend[i]=i;
 	i++;
 	menu();
 }
-
+//Menu onde se pode mudar o preço de cada categoria individualmente
 void prog_precario(){
 	char escolha=0;
 	int esc;
@@ -491,44 +565,47 @@ void prog_precario(){
 			}
 	}
 }
-
-
-
+//Menu onde mostra o histórico de compras feitas
 int prog_hist_vend(){
 	system("cls");
 	int x=0,ce=0;
 	for(x=0;x<tot_de_compras;x++){
-		printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",x,cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
+		printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 	}
 	printf("\nPara voltar para o menu inicial digite 1\n");
 	scanf("%i",&ce);
 }
-
-
+//Menu onde mostra os imostos gerais
 void prog_impostos(){
+	system("cls");
 	float imp_compras_men_12=0;
 	float imp_compras_sup_12=0;
 	float media_preco=0, media_prod=0;
 	float imp_15=0.15;
 	float imp_19=0.19;
 	int escolha=0;
+	val_tot_comp=val_tot_com_inf+val_tot_sup;
 	imp_compras_men_12 = val_tot_com_inf*imp_15;
 	imp_compras_sup_12 = val_tot_sup*imp_19;
 	media_preco= val_tot_comp / tot_de_compras;
-	Printf("\nCom um total de %i de vendas inferiores a 12euros.");
+	media_prod= tot_de_compras/i;
+	printf("\nCom um total de %i de vendas inferiores a 12euros.",tot_de_comp_inf_12);
 	printf("\nVai pagar %.2f de imposto das vendas com valor inferior a 12euros.",imp_compras_men_12);
-	printf("\nCom um total de %i de vendas superiores a 12euros.");
+	printf("\nCom um total de %i de vendas superiores a 12euros.",tot_de_comp_sup_12);
 	printf("\nVai pagar %.2f de imposto das vendas com valor superior a 12euros.",imp_compras_sup_12);
-	printf("\nA media de valor de vendas é de %.2f.",media_preco);
-	printf("\nA media de produtos vendidos é %.2f.",media_prod);
+	printf("\nA media de valor de vendas é de %.2f",media_preco);
+	printf("\nA media de produtos vendidos é %.2f",media_prod);
 	printf("\n\n\n\n\nPara voltar ao menu inicial insira 1");
+	printf("\nPara ver por cada categoria individual insira 2");
 	scanf("%i",&escolha);
 	if(escolha==1){
 		main();
+	}else if(escolha==2){
+		prog_impostos_categ();
 	}
 	
 }
-
+//Menu de Venda
 void novaVenda(){
 	//Define Variables
 	printf("\nIntroduza uma nova venda");
@@ -537,7 +614,7 @@ void novaVenda(){
 	menu_venda();
 	
 }
-
+//Menu inicial
 void menu(){
 	int op = 0;
 	printf("\n     	     Menu	    ");
@@ -573,8 +650,7 @@ void menu(){
 
 		}
 	}
-	
-	
+		
 //Main function
 int main(){
 	setlocale(LC_ALL, "portuguese");
