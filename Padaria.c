@@ -514,8 +514,10 @@ void prog_impostos(){
 	int escolha=0;
 	imp_compras_men_12 = val_tot_com_inf*imp_15;
 	imp_compras_sup_12 = val_tot_sup*imp_19;
-	media_preco=val_tot_comp/tot_de_compras;
+	media_preco= val_tot_comp / tot_de_compras;
+	Printf("\nCom um total de %i de vendas inferiores a 12euros.");
 	printf("\nVai pagar %.2f de imposto das vendas com valor inferior a 12euros.",imp_compras_men_12);
+	printf("\nCom um total de %i de vendas superiores a 12euros.");
 	printf("\nVai pagar %.2f de imposto das vendas com valor superior a 12euros.",imp_compras_sup_12);
 	printf("\nA media de valor de vendas é de %.2f.",media_preco);
 	printf("\nA media de produtos vendidos é %.2f.",media_prod);
