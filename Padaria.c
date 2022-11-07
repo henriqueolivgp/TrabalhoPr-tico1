@@ -4,15 +4,37 @@
 #include <string.h>
 #include <conio.h>
 #define max 30
-int g /*gelados*/ = 78, c /*confeiaria*/ = 35, p /*padaria*/ = 65, b /*bebidas*/ = 30; //define as variaveis que representa as categorias.
-float p_g = 1.5, p_c = 0.20, p_p = 0.45, p_b = 0.50; //define as variaveis globais que vao armazenar o preço das categorias.
-int tot_de_compras=0, tot_de_comp_inf_12=0, tot_de_comp_sup_12=0;//total de diferentes tipos de compras
-float val_tot_comp=0,val_tot_com_inf=0,val_tot_sup=0;//valor total de dinheiro gasto em tipos
-float media=0, imp_menor=0, imp_maior=0;//medias e impostos
-int cliente[max],num_vend[max],qnt_prod_vend[max];
-float val_venda[max];
-char categ[max];
-int i=0;
+
+//Variaveis utilizadas no stock e preços
+int g = 78; //Categoria Gelados
+int c = 35; //Categoria Confeitaria
+int p = 65; //Categoria Padaria
+int b = 30; //Categoria Bebidas
+
+//Variaveis dos preços das categorias
+float p_g = 2.00; //Preço dos gelados
+float p_c = 3.00; //Preço das confeitarias
+float p_p = 0.50; //Preço do pão
+float p_b = 2.00; //reço das bebidas
+
+
+//Totais de compras
+int tot_de_compras=0; //Numero total de copras feitas
+int tot_de_comp_inf_12=0; //Numero total de compras feitas inferiorres a 12€
+int tot_de_comp_sup_12=0; //Numero total de compras superiores a 12€
+
+//Variaveis para medias 
+float val_tot_comp=0; //Valor total pago em todas as compras
+float val_tot_com_inf=0; //Valor total pago em todas as compras inferiores a 12€
+float val_tot_sup=0; //Valor total pago em todas as compras superiores a 12€
+
+//arrays
+int cliente[max] //Guarda o numero do cartão de cliente de cada cliente
+int	num_vend[max] //Guarda o numero de venda
+int	qnt_prod_vend[max];//Quantidade de produtos vendidos em cada compra
+float val_venda[max];//Valor de venda de cada venda executada
+char categ[max];//Categoria da qual foi feita a compra
+int i=0;//indice das vareaveis
 
 
 
@@ -31,7 +53,7 @@ int prog_categ(){
 	printf("\n|\'m'/|-Return Menu-|");
 	scanf(" %c",&categoria);
 	switch(categoria){
-		
+		//mudança ade stok da categoria dos gelados
 		case 'g':
 			system("cls");
 			printf("\n Gelados /|");
@@ -186,20 +208,20 @@ int menu_venda(){
 				tot_de_comp_inf_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 			}else if(preco>12){
-				g=g-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f");
+				printf("\nA sua compra ficou em %.2f",preco_final);
 				printf("\nPasse o cartão");
 				printf("\nInsira o pin:\n");
 				scanf("%i",&pin);
 				printf("\nCompra aprovada");
+				g=g-qnt_produtos;
 				tot_de_compras++;
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;	
-				finalizar_compra();
+				compra_finalizada();
 			}
 			
 		break;
@@ -213,7 +235,7 @@ int menu_venda(){
 			if(preco<12){
 				c=c-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f");
+				printf("\nA sua compra ficou em %.2f",preco_final);
 				printf("\nPasse o cartão");
 				printf("\nInsira o pin:\n");
 				scanf("%i",&pin);
@@ -222,7 +244,7 @@ int menu_venda(){
 				tot_de_comp_inf_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 			}else if(preco>12){
 				c=c-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
@@ -235,7 +257,7 @@ int menu_venda(){
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 			}
 		break;
 		
@@ -257,7 +279,7 @@ int menu_venda(){
 				tot_de_comp_inf_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 			}else if(preco>12){
 				b=b-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
@@ -270,7 +292,7 @@ int menu_venda(){
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 			}
 		break;
 		
@@ -292,7 +314,7 @@ int menu_venda(){
 				tot_de_comp_inf_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 			}else if(preco>12){
 				p=p-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
@@ -305,13 +327,13 @@ int menu_venda(){
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				finalizar_compra();
+				compra_finalizada();
 		break;
 		}
 	}
 }
 
-void finalizar_compra(){
+void compra_finalizada(){
 	i++;
 	menu();
 }
@@ -453,10 +475,6 @@ void prog_precario(){
 
 
 int prog_hist_vend(){
-	/*int cliente[max],num_vend[max],qnt_prod_vend[max];
-	float val_venda[max];
-	char categ[max];
-	int i=0;*/
 	system("cls");
 	int x=0,ce=0;
 	for(x=0;x<tot_de_compras;x++){
@@ -468,6 +486,23 @@ int prog_hist_vend(){
 
 
 void prog_impostos(){
+//int tot_de_compras=0, tot_de_comp_inf_12=0, tot_de_comp_sup_12=0;//total de diferentes tipos de compras
+//float val_tot_comp=0,val_tot_com_inf=0,val_tot_sup=0;//valor total de dinheiro gasto em tipos
+	float imp_compras_men_12=0;
+	float imp_compras_sup_12=0;
+	float media_preco=0, media_prod=0;
+	int escolha
+	imp_compas_men_12 = val_tot_com_inf*0.15;
+	imp_compras_sup_12 = val_top_sup*0.19;
+	printf("\nVai pagar %.2f de imposto das vendas com valor inferior a 12€.");
+	printf("\nVai pagar %.2f de imposto das vendas com valor superior a 12€.");
+	printf("\nA media de produtos vendidos é %.2f.");
+	printf("\nA media de valor de vendas é de %.2f");
+	printf("\n\n\n\n\nPara voltar ao menu inicial insira 1");
+	scanf("%i",&escolha);
+	if(escolha==1){
+		main();
+	}
 	
 }
 
