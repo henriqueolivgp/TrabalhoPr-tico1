@@ -217,8 +217,8 @@ void prog_impostos_categ(){
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
 	switch(escolha){
-		case 'g'||'G':
-			media_prod_vend=p_v_g/q_v_G;
+		case 'g':
+			media_prod_vend=p_v_g/q_v_g;
 			media_precos=(p_v_g*p_g)/q_v_g;
 			lucros=p_g-p_c_g;
 			printf("\nGelados");
@@ -231,16 +231,45 @@ void prog_impostos_categ(){
 			printf("\nMédia de preço: %.2f",media_precos);
 		break;
 		
-		case 'b'||'B':
-			media_prod_vend=p_v_g/q_v_G;
+		case 'b':
+			media_prod_vend=p_v_b/q_v_b;
+			media_precos=(p_v_b*p_b)/q_v_b;
+			lucros=(p_b-p_c_b)*q_v_b;
 			printf("\nBebidas");
-			printf("\nNumero total de vendas: %i",q_v_b );
+			printf("\nNumero total de vendas: %i",q_v_b);
 			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_b);
 			printf("\nNumero total de vendas superior a 12euros: %i",q_v_sup_12_b);
+			printf("\nTotal de lucros: %.2f",lucros);
 			printf("\nQuantidade de produtos vendidos: %i",p_v_b);
 			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
-			printf("\nMédia de preços: ");
+			printf("\nMédia de preços: %.2f",media_precos);
+		break;
+		case 'p':
+			media_prod_vend=p_v_p/q_v_p;
+			media_precos=(p_v_p*p_p)/q_v_p;
+			lucros=(p_p-p_c_p)*q_v_p;
+			printf("\nBebidas");
+			printf("\nNumero total de vendas: %i",q_v_p);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_p);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_sup_12_p);
+			printf("\nTotal de lucros: %.2f",lucros);
+			printf("\nQuantidade de produtos vendidos: %i",p_v_p);
+			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
+			printf("\nMédia de preços: %.2f",media_precos);
 		break;	
+		case 'c':
+			media_prod_vend=p_v_c/q_v_c;
+			media_precos=(p_v_c*p_c)/q_v_c;
+			lucros=(p_c-p_c_c)*q_v_c;
+			printf("\nBebidas");
+			printf("\nNumero total de vendas: %i",q_v_c);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_c);
+			printf("\nNumero total de vendas superior a 12euros: %i",q_v_sup_12_c);
+			printf("\nTotal de lucros: %.2f",lucros);
+			printf("\nQuantidade de produtos vendidos: %i",p_v_c);
+			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
+			printf("\nMédia de preços: %.2f",media_precos);
+		break;
 	}
 }
 //Menu onde mudamos o preço original dos produtos(preço do fornecedor)
