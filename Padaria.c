@@ -66,6 +66,9 @@ int i=0;//indice das vareaveis
 void menu(void);
 void compra_finalizada(void);
 
+
+void prog_precario_original(){
+}
 //menu de alteração de stock
 int prog_categ(){
 	char categoria;
@@ -274,6 +277,10 @@ void prog_impostos_categ(){
 }
 //Menu onde mudamos o preço original dos produtos(preço do fornecedor)
 void prog_precario_fornecedor(){
+	char escolha;
+	float p_temp=0;
+	int cert;
+	int esc;
 	printf("\n|Qual a categoria que deseja mudar de preço original?|");
 	printf("\n|\\'g'/|-Gelados-|");
 	printf("\n|\\'b'/|-Bebidas-|");
