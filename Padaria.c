@@ -9,6 +9,12 @@ int c = 1000; //Categoria Confeitaria
 int p = 1000; //Categoria Padaria
 int b = 1000; //Categoria Bebidas
 
+//Variaveis que guardam o valor original de compra, utilizadas para calcular os lucros 
+float p_c_g = 0.50;
+float p_c_c = 0.80;
+float p_c_p = 0.10;
+float p_c_b = 0.45;
+
 //Variaveis dos preços das categorias
 float p_g = 2.00; //Preço dos gelados
 float p_c = 3.00; //Preço das confeitarias
@@ -57,11 +63,8 @@ float val_venda[max];//Valor de venda de cada venda executada
 char categ[max];//Categoria da qual foi feita a compra
 int i=0;//indice das vareaveis
 
-
-
 void menu(void);
 void compra_finalizada(void);
-
 
 //menu de alteração de stock
 int prog_categ(){
@@ -205,6 +208,7 @@ void prog_impostos_categ(){
 	int escolha=0;
 	float media_prod_vend=0;
 	float media_precos=0;
+	float lucros=0;
 	printf("\nQual categoria deseja analisar?");
 	printf("\n|\'g'/|-Gelados-|");
 	printf("\n|\'b'/|-Bebidas-|");
@@ -215,20 +219,20 @@ void prog_impostos_categ(){
 	switch(escolha){
 		case 'g'||'G':
 			media_prod_vend=p_v_g/q_v_G;
-			media_precos=()
+			media_precos=(p_v_g*p_g)/q_v_g;
+			lucros=p_g-p_c_g;
 			printf("\nGelados");
 			printf("\nNumero total de vendas: %i",q_v_g);
 			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_g);
 			printf("\nNumero total de vendas superior a 12euros: %i",q_v_sup_12_g);
-			printf("\n")
+			printf("\nTotal de lucros: %.2f",lucros);
 			printf("\nQuantidade de produtos vendidos: %i",p_v_g);
 			printf("\nMedia de produtos vendidos: %.2f", media_prod_vend);
-			printf("\nMédia de preço: ");
+			printf("\nMédia de preço: %.2f",media_precos);
 		break;
 		
 		case 'b'||'B':
 			media_prod_vend=p_v_g/q_v_G;
-			
 			printf("\nBebidas");
 			printf("\nNumero total de vendas: %i",q_v_b );
 			printf("\nNumero total de vendas superior a 12euros: %i",q_v_inf_12_b);
@@ -237,6 +241,135 @@ void prog_impostos_categ(){
 			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
 			printf("\nMédia de preços: ");
 		break;	
+	}
+}
+//Menu onde mudamos o preço original dos produtos(preço do fornecedor)
+void prog_precario_fornecedor(){
+	printf("\n|Qual a categoria que deseja mudar de preço original?|");
+	printf("\n|\\'g'/|-Gelados-|");
+	printf("\n|\\'b'/|-Bebidas-|");
+	printf("\n|\\'p'/|-Padaria-|");
+	printf("\n|\\'c'/|-Confeitaria-|");
+	printf("\n|-Escolha-| ");
+	scanf(" %c",&escolha);
+		switch(escolha){
+		case 'g':
+			system("cls");
+			printf("\nSelecionou a categoria gelados.");
+			printf("\nO preço original do fornecedor de gelados é de %.2f", p_c_g);
+			printf("\nQual é o preço que deseja que seja?");
+			printf("\nValor: ");
+			scanf("%f",&p_temp);
+			printf("\nO preço que antes era %.2f euros vai passar a ser %.2f euros",p_c_g,p_temp);
+			printf("\nDeseja mesmo fazer a alteração?");
+			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
+			scanf("%i",&cert);
+			if(cert==1){
+				p_c_g=p_temp;
+			}else{
+				printf("\nOs valores não foram alterados o preço dos gelados continua %i",p_c_g);
+				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
+				printf("\n1 -> Voltar ao menu inicial");
+				printf("\n2 -> Mudar preçario de alguma categoria");
+				scanf("%i",&esc);
+				switch(esc){
+					case 1:
+						menu();
+					break;
+					case 2:
+						prog_precario_fornecedor();
+					break;
+				}
+			}
+		case 'b':
+			system("cls");
+			printf("\nSelecionou a categoria bebidas.");
+			printf("\nO preço atual do fornecedor de bebidas é de %.2f", p_c_b);
+			printf("\nQual é o preço que deseja que seja?");
+			printf("\nValor: ");
+			scanf("%f",&p_temp);
+			printf("\nO preço que antes era %.2f euros vai passar a ser %.2f euros",p_c_b,p_temp);
+			printf("\nDeseja mesmo fazer a alteração?");
+			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
+			scanf("%i",&cert);
+			if(cert==1){
+				p_c_b=p_temp;
+			}else{
+				printf("\nOs valores não foram alterados o preço dos gelados continua %i",p_c_b);
+				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
+				printf("\n1 -> Voltar ao menu inicial");
+				printf("\n2 -> Mudar preçario de alguma categoria");
+				scanf("%i",&esc);
+				switch(esc){
+					case 1:
+						menu();
+					break;
+					
+					case 2:
+						prog_precario_fornecedor();
+					break;
+				}
+			}
+		break;
+		
+		case 'c':
+			system("cls");
+			printf("\nSelecionou a categoria confeitaria.");
+			printf("\nO preço atual do fornecedor de gelados é de %.2f", p_c_c);
+			printf("\nQual é o preço que deseja que seja?");
+			printf("\nValor: ");
+			scanf("%f",&p_temp);
+			printf("\nO preço que antes era %.2f euros vai passar a ser %.2f euros",p_c_c);
+			printf("\nDeseja mesmo fazer a alteração?");
+			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
+			scanf("%i",&cert);
+			if(cert==1){
+				p_c_c=p_temp;
+			}else{
+				printf("\nOs valores não foram alterados o preço dos gelados continua %i",p_c_c);
+				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
+				printf("\n1 -> Voltar ao menu inicial");
+				printf("\n2 -> Mudar preçario de alguma categoria");
+				scanf("%i",&esc);
+				switch(esc){
+					case 1:
+						menu();
+					break;
+					
+					case 2:
+						prog_precario_fornecedor();
+					break;
+				}
+			}
+	case 'p':
+			system("cls");
+			printf("\nSelecionou a categoria padaria.");
+			printf("\nO preço atual dos produtos de padaraia é de %.2f", p_c_p);
+			printf("\nQual é o preço que deseja que seja?");
+			printf("\nValor: ");
+			scanf("%f",&p_temp);
+			printf("\nO preço que antes era %.2f euros vai passar a ser %.2f euros",p_c_p,p_temp);
+			printf("\nDeseja mesmo fazer a alteração?");
+			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
+			scanf("%i",&cert);
+		if(cert==1){
+				p_c_p=p_temp;
+		}else{
+			printf("\nOs valores não foram alterados o preço dos gelados continua %i",p_c_p);
+			printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
+			printf("\n1 -> Voltar ao menu inicial");
+			printf("\n2 -> Mudar preçario de alguma categoria");
+			scanf("%i",&esc);
+				switch(esc){
+				case 1:
+					menu();
+				break;
+					
+				case 2:
+						prog_precario_fornecedor();
+				break;
+			}
+		}
 	}
 }
 //menu de venda
@@ -438,10 +571,10 @@ void prog_precario(){
 	int cert=0;
 	float p_temp=0.0;//preço temporario
 	printf("\n|Qual a categoria que deseja mudar de preço?|");
-	printf("\n|\'g'/|-Gelados-|");
-	printf("\n|\'b'/|-Bebidas-|");
-	printf("\n|\'p'/|-Padaria-|");
-	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|\\'g'/|-Gelados-|");
+	printf("\n|\\'b'/|-Bebidas-|");
+	printf("\n|\\'p'/|-Padaria-|");
+	printf("\n|\\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
 	switch(escolha){
@@ -563,7 +696,10 @@ void prog_precario(){
 					break;
 				}
 			}
-	}
+		case 'l':
+			prog_precario_original();
+		break;
+		}
 }
 //Menu onde mostra o histórico de compras feitas
 int prog_hist_vend(){
@@ -624,6 +760,7 @@ void menu(){
 	printf("\n3 -> Ver stock/Aterar stock");
 	printf("\n4 -> Alterar Preçario");
 	printf("\n5 -> Ver os impostos e médias");
+	printf("\n6 -> Alteração de preços do fornecedor");
 	printf("\nOp: ");
 	scanf("%i", &op);
 	
@@ -647,10 +784,11 @@ void menu(){
 		case 5:
 			prog_impostos();
 		break;
-
+		case 6:
+			prog_precario_fornecedor();
+		break;
 		}
-	}
-		
+	}		
 //Main function
 int main(){
 	setlocale(LC_ALL, "portuguese");
