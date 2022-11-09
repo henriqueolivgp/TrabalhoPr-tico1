@@ -10,10 +10,10 @@ int p = 1000; //Categoria Padaria
 int b = 1000; //Categoria Bebidas
 
 //Variaveis que guardam o valor original de compra, utilizadas para calcular os lucros 
-float p_c_g = 0.50;
-float p_c_c = 0.80;
-float p_c_p = 0.10;
-float p_c_b = 0.45;
+float p_c_g = 0.50;//preço de compra ao forncecedor da categoria dos gelados 
+float p_c_c = 0.80;//preço de compra ao forncecedar da categoria de confeitarias
+float p_c_p = 0.10;//preço de compra ao forncecedor da categoria de padaria
+float p_c_b = 0.45;//preço de compra ao forncecedor da categoria de bebidas
 
 //Variaveis dos preços das categorias
 float p_g = 2.00; //Preço dos gelados
@@ -66,6 +66,20 @@ int i=0;//indice das vareaveis
 void menu(void);
 void compra_finalizada(void);
 
+void historico_compras_categoria(){
+	char categoria;
+	printf("\nQual é a categoria que deseja alterar o stock:");
+	printf("\n|\'g'/|-Gelados-|");
+	printf("\n|\'b'/|-Bebidas-|");
+	printf("\n|\'p'/|-Padaria-|");
+	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|\'m'/|-Return Menu-|");
+	printf("\n-> ");
+	scanf(" %c",&categoria);
+	switch(categoria){
+		
+	}
+}
 
 void prog_precario_original(){
 }
@@ -213,7 +227,7 @@ int prog_categ(){
 }
 //Menu que mostra os impostos e informações de cada categoria individual
 void prog_impostos_categ(){
-	int escolha=0;
+	int escolha=0,esc=0;
 	float media_prod_vend=0;
 	float media_precos=0;
 	float lucros=0;
@@ -237,6 +251,14 @@ void prog_impostos_categ(){
 			printf("\nQuantidade de produtos vendidos: %i",p_v_g);
 			printf("\nMedia de produtos vendidos: %.2f", media_prod_vend);
 			printf("\nMédia de preço: %.2f",media_precos);
+			printf("\n\n\nPara ver os dados de outra categoria digite 1");
+			printf("\nPara voltar ao menu inicial digite 2");
+			scanf("%i",esc);
+			if(esc==1){
+				prog_impostos_categ();
+			}if(esc==2){
+				menu();
+			}
 		break;
 		
 		case 'b':
@@ -251,6 +273,14 @@ void prog_impostos_categ(){
 			printf("\nQuantidade de produtos vendidos: %i",p_v_b);
 			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
 			printf("\nMédia de preços: %.2f",media_precos);
+			printf("\n\n\nPara ver os dados de outra categoria digite 1");
+			printf("\nPara voltar ao menu inicial digite 2");
+			scanf("%i",esc);
+			if(esc==1){
+				prog_impostos_categ();
+			}if(esc==2){
+				menu();
+			}
 		break;
 		case 'p':
 			media_prod_vend=p_v_p/q_v_p;
@@ -264,6 +294,14 @@ void prog_impostos_categ(){
 			printf("\nQuantidade de produtos vendidos: %i",p_v_p);
 			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
 			printf("\nMédia de preços: %.2f",media_precos);
+			printf("\n\n\nPara ver os dados de outra categoria digite 1");
+			printf("\nPara voltar ao menu inicial digite 2");
+			scanf("%i",esc);
+			if(esc==1){
+				prog_impostos_categ();
+			}if(esc==2){
+				menu();
+			}
 		break;	
 		case 'c':
 			media_prod_vend=p_v_c/q_v_c;
@@ -277,6 +315,14 @@ void prog_impostos_categ(){
 			printf("\nQuantidade de produtos vendidos: %i",p_v_c);
 			printf("\nMedia de produtos vendidos: %.2f",media_prod_vend);
 			printf("\nMédia de preços: %.2f",media_precos);
+			printf("\n\n\nPara ver os dados de outra categoria digite 1");
+			printf("\nPara voltar ao menu inicial digite 2");
+			scanf("%i",esc);
+			if(esc==1){
+				prog_impostos_categ();
+			}if(esc==2){
+				menu();
+			}
 		break;
 	}
 }
@@ -773,10 +819,23 @@ void prog_precario(){
 //Menu onde mostra o histórico de compras feitas
 int prog_hist_vend(){
 	system("cls");
-	int x=0,ce=0;
-	for(x=0;x<tot_de_compras;x++){
-		printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
+	int x=0,ce=0,escolha;
+	printf("\nPara ver o histórico geral digite 1");
+	printf("\nPara ver as as vendas de valor mais alto digite 2");
+	printf("\nPara ver as vendas individuais de cada categoria digite 3");
+	scanf("%i",&escolha);
+	switch(escolha){
+		case 1:
+			system("cls");
+			for(x=0;x<tot_de_compras;x++){
+				printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 	}
+	break;
+	
+	case 2:
+		historico_compras_categorias();
+	break;
+}
 	printf("\nPara voltar para o menu inicial digite 1\n");
 	scanf("%i",&ce);
 }
