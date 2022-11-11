@@ -62,10 +62,24 @@ int	num_vend[max]; //Guarda o numero de venda
 int	qnt_prod_vend[max];//Quantidade de produtos vendidos em cada compra
 float val_venda[max];//Valor de venda de cada venda executada
 char categ[max];//Categoria da qual foi feita a compra
-int i=1;//indice das vareaveis
+int i=0;//indice das vareaveis
 
 void menu(void);
 void compra_finalizada(void);
+
+void historico_compra_mais_alta(){
+	int x;
+	float a=0,b=0;
+	for(x=0;x<tot_de_compras;x++){
+		if(a<val_venda[x]){
+			a=val_venda[x];
+		}
+	}for(x=0;x<tot_de_compras;x++){
+		if(a==val_venda[x]){
+			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
+		}
+	}
+}
 
 void repeticao_compra(){
 	int c;
@@ -87,12 +101,12 @@ void historico_compras_categorias(){
 	printf("\n-> ");
 	scanf(" %c",&categoria);
 	switch(categoria){
-		
+		case 'g':
+			
+		break;
 	}
 }
 
-void prog_precario_original(){
-}
 //menu de alteração de stock
 int prog_categ(){
 	
@@ -233,6 +247,9 @@ int prog_categ(){
 			case 'm':
 				menu();
 			break;
+			default:
+				printf("operação invalida");
+			break;
 	}
 }
 //Menu que mostra os impostos e informações de cada categoria individual
@@ -333,6 +350,9 @@ void prog_impostos_categ(){
 			}if(esc==2){
 				menu();
 			}
+		break;
+		default:
+			printf("\noperação invalida");
 		break;
 	}
 }
@@ -467,6 +487,10 @@ void prog_precario_fornecedor(){
 				break;
 			}
 		}
+		default:
+			printf("\noperação invalida");
+			main();
+		break;
 	}
 }
 //menu de venda
@@ -555,7 +579,7 @@ int menu_venda(){
 			printf("\nQuantos deseja comprar?");
 			scanf("%i",&qnt_produtos);
 			preco=p_c*qnt_produtos;
-			if(qnt_produtos>g){
+			if(qnt_produtos>c){
 			printf("\nQuantidade acima do nosso stock.");
 			printf("\nDigite 1 para voltar a fazer uma compra.");
 			printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
@@ -615,7 +639,7 @@ int menu_venda(){
 			printf("\nQuantos deseja comprar?");
 			scanf("%i",&qnt_produtos);
 			preco=p_b*qnt_produtos;
-			if(qnt_produtos>g){
+			if(qnt_produtos>b){
 				printf("\nQuantidade acima do nosso stock.");
 				printf("\nDigite 1 para voltar a fazer uma compra.");
 				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
@@ -675,7 +699,7 @@ int menu_venda(){
 			printf("\nQuantos deseja comprar?");
 			scanf("%i",&qnt_produtos);
 			preco=p_p*qnt_produtos;
-			if(qnt_produtos>g){
+			if(qnt_produtos>p){
 				printf("\nQuantidade acima do nosso stock.");
 				printf("\nDigite 1 para voltar a fazer uma compra.");
 				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
@@ -726,6 +750,10 @@ int menu_venda(){
 				}else if(g==2){
 					main();
 				}
+		break;
+		
+		default:
+			printf("\noperação invalida");
 		break;
 	}
 }
@@ -867,8 +895,10 @@ void prog_precario(){
 					break;
 				}
 			}
-		case 'l':
-			prog_precario_original();
+			
+		default:
+			printf("\noperação invalida");
+			main();
 		break;
 		}
 }
@@ -878,19 +908,24 @@ int prog_hist_vend(){
 	int x=0,ce=0,escolha;
 	printf("\nPara ver o histórico geral digite 1");
 	printf("\nPara ver as as vendas de valor mais alto digite 2");
-	printf("\nPara ver as vendas individuais de cada categoria digite 3");
+	printf("\nPara ver as vendas individuais de cada categoria digite 3\n");
 	scanf("%i",&escolha);
 	switch(escolha){
 		case 1:
 			system("cls");
-			for(x=0;x<tot_de_compras;x++){
+			for(x=1;x<tot_de_compras;x++){
 				printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 	}
 	break;
 	
 	case 2:
-		historico_compras_categorias();
+		historico_compra_mais_alta();
 	break;
+	
+	default:
+			printf("\noperação invalida");
+			main();
+		break;
 }
 	printf("\nPara voltar para o menu inicial digite 1\n");
 	scanf("%i",&ce);
@@ -915,6 +950,7 @@ void prog_impostos(){
 	printf("\nVai pagar %.2f de imposto das vendas com valor superior a 12euros.",imp_compras_sup_12);
 	printf("\nA media de valor de vendas é de %.2f",media_preco);
 	printf("\nA media de produtos vendidos é %.2f",media_prod);
+	
 	printf("\n\n\n\n\nPara voltar ao menu inicial insira 1");
 	printf("\nPara ver por cada categoria individual insira 2");
 	printf("\n-> ");
@@ -982,6 +1018,11 @@ void menu(){
 		case 6:
 			prog_precario_fornecedor();
 			menu();
+		break;
+	
+		default:
+			printf("\noperação invalida");
+			main();
 		break;
 		}
 	}		
