@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 #define max 30
 
@@ -61,12 +62,21 @@ int	num_vend[max]; //Guarda o numero de venda
 int	qnt_prod_vend[max];//Quantidade de produtos vendidos em cada compra
 float val_venda[max];//Valor de venda de cada venda executada
 char categ[max];//Categoria da qual foi feita a compra
-int i=0;//indice das vareaveis
+int i=1;//indice das vareaveis
 
 void menu(void);
 void compra_finalizada(void);
 
-void historico_compras_categoria(){
+void repeticao_compra(){
+	int c;
+	num_vend[i]=i;
+	i++;
+	c=i-1;
+	cliente[i]=cliente[c];
+	menu_venda();
+}
+
+void historico_compras_categorias(){
 	char categoria;
 	printf("\nQual é a categoria que deseja alterar o stock:");
 	printf("\n|\'g'/|-Gelados-|");
@@ -461,8 +471,8 @@ void prog_precario_fornecedor(){
 }
 //menu de venda
 int menu_venda(){
-	
-	int qnt_produtos=0,pin=0;
+	char categoria;
+	int qnt_produtos=0,pin=0,f=0,esco=0;
 	float preco_final=0,preco=0;
 	
 	system("cls");
@@ -473,26 +483,30 @@ int menu_venda(){
 	printf("\n|\'p'/|-Padaria-|");
 	printf("\n|\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
-	scanf(" %c",&categ[i]);
-	switch(categ[i]){
+	scanf(" %c",&categoria);
+	switch(categoria){
 		case 'g':
 			
 			system("cls");
-			
 			printf("\nGelados.");
 			printf("\nEm stock temos %i.", g);
 			printf("\nQuantos deseja comprar?");
 			printf("\n-> ");
 			scanf("%i",&qnt_produtos);
 			preco=p_g*qnt_produtos;
+			if(qnt_produtos>g){
+				printf("\nQuantidade acima do nosso stock.");
+				printf("\nDigite 1 para voltar a fazer uma compra.");
+				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+				scanf("%i",&f);
+				if(f==1){
+					menu_venda();
+				}else if(f==2){
+					main();
+				}
+			}
 			if(preco<12){
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f",preco_final);
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				g=g-qnt_produtos;
 				p_v_g=p_v_g+qnt_produtos;
 				tot_de_compras++;
@@ -502,18 +516,8 @@ int menu_venda(){
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 			}else if(preco>12){
 				preco_final=p_g*qnt_produtos;
-				
-				system("cls");
-				
-				printf("\nA sua compra ficou em %.2f",preco_final);
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				g=g-qnt_produtos;
 				q_v_g++;
 				p_v_g=p_v_g+qnt_produtos;
@@ -523,8 +527,22 @@ int menu_venda(){
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;	
-				compra_finalizada();
 			}
+							
+				printf("\nA sua compra ficou em %.2f",preco_final);
+				printf("\nPasse o cartão");
+				printf("\nInsira o pin:");
+				printf("\n-> ");
+				scanf("%i",&pin);
+				printf("\nCompra aprovada");
+				printf("\ndigite 1 para refazer uma compra.");
+				printf("\nDigite 2 para voltar ao menu inicial");
+				scanf("%i",&esco);
+				if(esco==1){
+					repeticao_compra();
+				}else if(esco==2){
+					compra_finalizada();
+				}
 			
 		break;
 		
@@ -537,15 +555,20 @@ int menu_venda(){
 			printf("\nQuantos deseja comprar?");
 			scanf("%i",&qnt_produtos);
 			preco=p_c*qnt_produtos;
+			if(qnt_produtos>g){
+			printf("\nQuantidade acima do nosso stock.");
+			printf("\nDigite 1 para voltar a fazer uma compra.");
+			printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+			scanf("%i",&f);
+			if(f==1){
+				menu_venda();
+			}else if(f==2){
+				main();
+			}
+		}
 			if(preco<12){
 				c=c-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f",preco_final);
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_c=p_v_c+qnt_produtos;
 				tot_de_comp_inf_12++;
@@ -554,16 +577,9 @@ int menu_venda(){
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 			}else if(preco>12){
 				c=c-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f",preco_final);
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_c=p_v_c+qnt_produtos;
 				tot_de_comp_sup_12++;
@@ -572,8 +588,22 @@ int menu_venda(){
 				val_tot_sup=val_tot_sup+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 			}
+							
+				printf("\nA sua compra ficou em %.2f",preco_final);
+				printf("\nPasse o cartão");
+				printf("\nInsira o pin:");
+				printf("\n-> ");
+				scanf("%i",&pin);
+				printf("\nCompra aprovada");
+				printf("\ndigite 1 para refazer uma compra.");
+				printf("\nDigite 2 para voltar ao menu inicial");
+				scanf("%i",&esco);
+				if(esco==1){
+					repeticao_compra();
+				}else if(esco==2){
+					main();
+				}
 		break;
 		
 		case 'b':
@@ -585,15 +615,20 @@ int menu_venda(){
 			printf("\nQuantos deseja comprar?");
 			scanf("%i",&qnt_produtos);
 			preco=p_b*qnt_produtos;
+			if(qnt_produtos>g){
+				printf("\nQuantidade acima do nosso stock.");
+				printf("\nDigite 1 para voltar a fazer uma compra.");
+				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+				scanf("%i",&f);
+				if(f==1){
+					menu_venda();
+				}else if(f==2){
+					main();
+				}
+			}
 			if(preco<12){
 				b=b-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f");
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_b=p_v_b+qnt_produtos;
 				tot_de_comp_inf_12++;
@@ -602,16 +637,9 @@ int menu_venda(){
 				val_venda[i]=preco_final;
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 			}else if(preco>12){
 				b=b-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f");
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_b=p_v_b+qnt_produtos;
 				tot_de_comp_sup_12++;
@@ -620,8 +648,22 @@ int menu_venda(){
 				val_tot_sup=val_tot_sup+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 			}
+							
+				printf("\nA sua compra ficou em %.2f",preco_final);
+				printf("\nPasse o cartão");
+				printf("\nInsira o pin:");
+				printf("\n-> ");
+				scanf("%i",&pin);
+				printf("\nCompra aprovada");
+				printf("\ndigite 1 para refazer uma compra.");
+				printf("\nDigite 2 para voltar ao menu inicial");
+				scanf("%i",&esco);
+				if(esco==1){
+					repeticao_compra();
+				}else if(esco==2){
+					main();
+				}
 		break;
 		
 		case 'p':
@@ -633,15 +675,20 @@ int menu_venda(){
 			printf("\nQuantos deseja comprar?");
 			scanf("%i",&qnt_produtos);
 			preco=p_p*qnt_produtos;
-			if(preco<12){
+			if(qnt_produtos>g){
+				printf("\nQuantidade acima do nosso stock.");
+				printf("\nDigite 1 para voltar a fazer uma compra.");
+				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+				scanf("%i",&f);
+				if(f==1){
+					menu_venda();
+				}else if(f==2){
+					main();
+				}
+			}
+				if(preco<12){
 				p=p-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f");
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_p=p_v_p+qnt_produtos;
 				tot_de_comp_inf_12++;
@@ -654,12 +701,6 @@ int menu_venda(){
 			}else if(preco>12){
 				p=p-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
-				printf("\nA sua compra ficou em %.2f");
-				printf("\nPasse o cartão");
-				printf("\nInsira o pin:");
-				printf("\n-> ");
-				scanf("%i",&pin);
-				printf("\nCompra aprovada");
 				tot_de_compras++;
 				p_v_p=p_v_p+qnt_produtos;
 				q_v_p++;
@@ -669,8 +710,23 @@ int menu_venda(){
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
 				compra_finalizada();
-		break;
 		}
+							
+				printf("\nA sua compra ficou em %.2f",preco_final);
+				printf("\nPasse o cartão");
+				printf("\nInsira o pin:");
+				printf("\n-> ");
+				scanf("%i",&pin);
+				printf("\nCompra aprovada");
+				printf("\ndigite 1 para refazer uma compra.");
+				printf("\nDigite 2 para voltar ao menu inicial");
+				scanf("%i",&esco);
+				if(esco==1){
+					repeticao_compra();
+				}else if(g==2){
+					main();
+				}
+		break;
 	}
 }
 //Função onde executa o termino defenitivo da venda
