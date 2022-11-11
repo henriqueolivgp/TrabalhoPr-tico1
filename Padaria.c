@@ -102,7 +102,11 @@ void historico_compras_categorias(){
 	scanf(" %c",&categoria);
 	switch(categoria){
 		case 'g':
-			
+			for(x=0;x<t;x++){
+				if(categ[i]='g'){
+					printf("\numero de compra valor gasto cliente",variaveis);
+				}
+			}
 		break;
 	}
 }
@@ -626,7 +630,7 @@ int menu_venda(){
 				if(esco==1){
 					repeticao_compra();
 				}else if(esco==2){
-					main();
+					compra_finalizada();
 				}
 		break;
 		
@@ -686,7 +690,7 @@ int menu_venda(){
 				if(esco==1){
 					repeticao_compra();
 				}else if(esco==2){
-					main();
+					compra_finalizada();
 				}
 		break;
 		
@@ -697,6 +701,7 @@ int menu_venda(){
 			printf("\nPadaria.");
 			printf("\nEm stock temos %i.", p);
 			printf("\nQuantos deseja comprar?");
+			printf("\nDigite um numero acima do nosso stock para voltar ao menu inicial");
 			scanf("%i",&qnt_produtos);
 			preco=p_p*qnt_produtos;
 			if(qnt_produtos>p){
@@ -721,7 +726,6 @@ int menu_venda(){
 				val_tot_com_inf=val_tot_com_inf+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 			}else if(preco>12){
 				p=p-qnt_produtos;
 				preco_final=p_g*qnt_produtos;
@@ -733,7 +737,6 @@ int menu_venda(){
 				tot_de_comp_sup_12++;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-				compra_finalizada();
 		}
 							
 				printf("\nA sua compra ficou em %.2f",preco_final);
@@ -748,7 +751,7 @@ int menu_venda(){
 				if(esco==1){
 					repeticao_compra();
 				}else if(g==2){
-					main();
+					compra_finalizada();
 				}
 		break;
 		
