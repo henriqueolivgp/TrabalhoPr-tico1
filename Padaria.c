@@ -83,7 +83,7 @@ void historico_compra_mais_alta(){
 
 void repeticao_compra(){
 	int c;
-	num_vend[i]=i;
+	num_vend[i]=i+1;
 	i++;
 	c=i-1;
 	cliente[i]=cliente[c];
@@ -92,6 +92,7 @@ void repeticao_compra(){
 
 void historico_compras_categorias(){
 	char categoria;
+	int t=0,x=0;
 	printf("\nQual é a categoria que deseja alterar o stock:");
 	printf("\n|\'g'/|-Gelados-|");
 	printf("\n|\'b'/|-Bebidas-|");
@@ -102,11 +103,42 @@ void historico_compras_categorias(){
 	scanf(" %c",&categoria);
 	switch(categoria){
 		case 'g':
+			t=q_v_sup_12_g+q_v_inf_12_g;
 			for(x=0;x<t;x++){
 				if(categ[i]='g'){
-					printf("\numero de compra valor gasto cliente",variaveis);
+					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
 				}
 			}
+		break;
+		case 'b':
+			t=q_v_sup_12_b+q_v_inf_12_b;
+			for(x=0;x<t;x++){
+				if(categ[i]='b'){
+					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
+				}
+			}
+		break;
+		case 'p':
+			t=q_v_sup_12_p+q_v_inf_12_p;
+			for(x=0;x<t;x++){
+				if(categ[i]='b'){
+					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
+				}
+			}
+		break;
+		case 'c':
+			t=q_v_sup_12_c+q_v_inf_12_c;
+			for(x=0;x<t;x++){
+				if(categ[i]='b'){
+					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
+				}
+			}
+		break;
+		case 'm':
+			main();
+		break;
+		default:
+			printf("\nOperação ivalida.");
 		break;
 	}
 }
@@ -511,8 +543,8 @@ int menu_venda(){
 	printf("\n|\'p'/|-Padaria-|");
 	printf("\n|\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
-	scanf(" %c",&categoria);
-	switch(categoria){
+	scanf(" %c",&categ[i]);
+	switch(categ[i]){
 		case 'g':
 			
 			system("cls");
@@ -537,24 +569,24 @@ int menu_venda(){
 				preco_final=p_g*qnt_produtos;
 				g=g-qnt_produtos;
 				p_v_g=p_v_g+qnt_produtos;
+				val_tot_com_inf=val_tot_com_inf+preco_final;
+				val_venda[i]=preco_final;
+				qnt_prod_vend[i]=qnt_produtos;
 				tot_de_compras++;
 				q_v_g++;
 				q_v_inf_12_g++;
 				tot_de_comp_inf_12++;
-				val_tot_com_inf=val_tot_com_inf+preco_final;
-				val_venda[i]=preco_final;
-				qnt_prod_vend[i]=qnt_produtos;
 			}else if(preco>12){
 				preco_final=p_g*qnt_produtos;
 				g=g-qnt_produtos;
-				q_v_g++;
 				p_v_g=p_v_g+qnt_produtos;
+				val_tot_sup=val_tot_sup+preco_final;
+				val_venda[i]=preco_final;
+				qnt_prod_vend[i]=qnt_produtos;
+				q_v_g++;
 				tot_de_compras++;
 				q_v_sup_12_g++;
-				val_tot_sup=val_tot_sup+preco_final;
 				tot_de_comp_sup_12++;
-				val_venda[i]=preco_final;
-				qnt_prod_vend[i]=qnt_produtos;	
 			}
 							
 				printf("\nA sua compra ficou em %.2f",preco_final);
@@ -586,7 +618,7 @@ int menu_venda(){
 			if(qnt_produtos>c){
 			printf("\nQuantidade acima do nosso stock.");
 			printf("\nDigite 1 para voltar a fazer uma compra.");
-			printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+			printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial\n");
 			scanf("%i",&f);
 			if(f==1){
 				menu_venda();
@@ -596,7 +628,7 @@ int menu_venda(){
 		}
 			if(preco<12){
 				c=c-qnt_produtos;
-				preco_final=p_g*qnt_produtos;
+				preco_final=p_c*qnt_produtos;
 				tot_de_compras++;
 				p_v_c=p_v_c+qnt_produtos;
 				tot_de_comp_inf_12++;
@@ -607,7 +639,7 @@ int menu_venda(){
 				qnt_prod_vend[i]=qnt_produtos;
 			}else if(preco>12){
 				c=c-qnt_produtos;
-				preco_final=p_g*qnt_produtos;
+				preco_final=p_c*qnt_produtos;
 				tot_de_compras++;
 				p_v_c=p_v_c+qnt_produtos;
 				tot_de_comp_sup_12++;
@@ -656,7 +688,7 @@ int menu_venda(){
 			}
 			if(preco<12){
 				b=b-qnt_produtos;
-				preco_final=p_g*qnt_produtos;
+				preco_final=p_b*qnt_produtos;
 				tot_de_compras++;
 				p_v_b=p_v_b+qnt_produtos;
 				tot_de_comp_inf_12++;
@@ -667,7 +699,7 @@ int menu_venda(){
 				qnt_prod_vend[i]=qnt_produtos;
 			}else if(preco>12){
 				b=b-qnt_produtos;
-				preco_final=p_g*qnt_produtos;
+				preco_final=p_b*qnt_produtos;
 				tot_de_compras++;
 				p_v_b=p_v_b+qnt_produtos;
 				tot_de_comp_sup_12++;
@@ -676,8 +708,7 @@ int menu_venda(){
 				val_tot_sup=val_tot_sup+preco_final;
 				val_venda[i]=preco_final;
 				qnt_prod_vend[i]=qnt_produtos;
-			}
-							
+			}			
 				printf("\nA sua compra ficou em %.2f",preco_final);
 				printf("\nPasse o cartão");
 				printf("\nInsira o pin:");
@@ -717,7 +748,7 @@ int menu_venda(){
 			}
 				if(preco<12){
 				p=p-qnt_produtos;
-				preco_final=p_g*qnt_produtos;
+				preco_final=p_p*qnt_produtos;
 				tot_de_compras++;
 				p_v_p=p_v_p+qnt_produtos;
 				tot_de_comp_inf_12++;
@@ -728,7 +759,7 @@ int menu_venda(){
 				qnt_prod_vend[i]=qnt_produtos;
 			}else if(preco>12){
 				p=p-qnt_produtos;
-				preco_final=p_g*qnt_produtos;
+				preco_final=p_p*qnt_produtos;
 				tot_de_compras++;
 				p_v_p=p_v_p+qnt_produtos;
 				q_v_p++;
@@ -762,7 +793,7 @@ int menu_venda(){
 }
 //Função onde executa o termino defenitivo da venda
 void compra_finalizada(){
-	num_vend[i]=i;
+	num_vend[i]=i+1;
 	i++;
 	menu();
 }
@@ -916,7 +947,7 @@ int prog_hist_vend(){
 	switch(escolha){
 		case 1:
 			system("cls");
-			for(x=1;x<tot_de_compras;x++){
+			for(x=0;x<tot_de_compras;x++){
 				printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 	}
 	break;
@@ -924,10 +955,12 @@ int prog_hist_vend(){
 	case 2:
 		historico_compra_mais_alta();
 	break;
+	case 3:
+		historico_compras_categorias();
+	break;
 	
 	default:
 			printf("\noperação invalida");
-			main();
 		break;
 }
 	printf("\nPara voltar para o menu inicial digite 1\n");
@@ -1025,7 +1058,6 @@ void menu(){
 	
 		default:
 			printf("\noperação invalida");
-			main();
 		break;
 		}
 	}		
