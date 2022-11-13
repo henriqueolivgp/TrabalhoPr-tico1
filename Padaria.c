@@ -76,7 +76,9 @@ void prog_impostos(void);
 
 //menu onde escolhemos o que queremos ver, se é as medias ou os impostos
 void menu_imp_med(){
+	
 	int escolha;
+	
 	printf("\nPara ver por cada categoria individual insira 1");
 	printf("\n2 -> Ver os impostos gerais");
 	printf("\n3 -> Ver as compras individuais por cliente");
@@ -85,7 +87,8 @@ void menu_imp_med(){
 	printf("\n6 -> Ver a compra mais baixa");
 	printf("\nPara voltar ao menu inicial insira 7");
 	printf("\n-> ");
-	scanf("%i",&escolha);
+	scanf("%i",&escolha); 
+	
 	switch(escolha){
 		case 1:
 			
@@ -110,7 +113,9 @@ void menu_imp_med(){
 }
 
 void compra_mais_baixa(){
+	
 		int x;
+		
 	float a=80000,b=0;
 	for(x=0;x<tot_de_compras;x++){
 		if(a>val_venda[x]){
@@ -125,7 +130,9 @@ void compra_mais_baixa(){
 
 //Apresenta o historico individual de cada cliente
 void historico_por_cliente(){
+	
 	int x=0,t=0,e=0;
+	
 	printf("\nEscolha qual cliente deseja ver o historico");
 	for(x=0;x<tot_de_compras;x++){
 		printf("\nCliente nº %i",cliente[x]);
@@ -140,8 +147,10 @@ void historico_por_cliente(){
 }
 //Apresentar a quantidade de vendas com preço superior à média de todas as vendas;
 void vendas_sup_media(){
+	
 	float media=0;
 	int x=0;
+	
 	media=val_tot_comp/tot_de_compras;
 	for(x=0;x<tot_de_compras;x++){
 		if(val_venda[x]>=media){
@@ -151,7 +160,9 @@ void vendas_sup_media(){
 }
 //Menu de histórico de compra mais alta
 void historico_compra_mais_alta(){
+	
 	int x;
+	
 	float a=0,b=0;
 	for(x=0;x<tot_de_compras;x++){
 		if(a<val_venda[x]){
@@ -165,7 +176,9 @@ void historico_compra_mais_alta(){
 }
 //Repete a compra
 void repeticao_compra(){
+	
 	int c;
+	
 	num_vend[i]=i+1;
 	i++;
 	c=i-1;
@@ -174,8 +187,10 @@ void repeticao_compra(){
 }
 //Historico por categoria
 void historico_compras_categorias(){
+	
 	char categoria;
 	int t=0,x=0;
+	
 	printf("\nQual é a categoria que deseja alterar o stock:");
 	printf("\n|\'g'/|-Gelados-|");
 	printf("\n|\'b'/|-Bebidas-|");
@@ -184,7 +199,9 @@ void historico_compras_categorias(){
 	printf("\n|\'m'/|-Return Menu-|");
 	printf("\n-> ");
 	scanf(" %c",&categoria);
+	
 	switch(categoria){
+		
 		case 'g':
 			t=q_v_sup_12_g+q_v_inf_12_g;
 			for(x=0;x<t;x++){
@@ -242,6 +259,7 @@ int prog_categ(){
 	printf("\n|\'m'/|-Return Menu-|");
 	printf("\n-> ");
 	scanf(" %c",&categoria);
+	
 	switch(categoria){
 		//mudança ade stok da categoria dos gelados
 		case 'g':
@@ -372,10 +390,12 @@ int prog_categ(){
 }
 //Menu que mostra os impostos e informações de cada categoria individual
 void prog_impostos_categ(){
+	
 	int escolha=0,esc=0;
 	float media_prod_vend=0;
 	float media_precos=0;
 	float lucros=0;
+	
 	printf("\nQual categoria deseja analisar?");
 	printf("\n|\'g'/|-Gelados-|");
 	printf("\n|\'b'/|-Bebidas-|");
@@ -383,7 +403,9 @@ void prog_impostos_categ(){
 	printf("\n|\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
+	
 	switch(escolha){
+		
 		case 'g':
 			media_prod_vend=p_v_g/q_v_g;
 			media_precos=(p_v_g*p_g)/q_v_g;
@@ -476,10 +498,12 @@ void prog_impostos_categ(){
 }
 //Menu onde mudamos o preço original dos produtos(preço do fornecedor)
 void prog_precario_fornecedor(){
+	
 	char escolha;
 	float p_temp=0;
 	int cert;
 	int esc;
+	
 	printf("\n|Qual a categoria que deseja mudar de preço original?|");
 	printf("\n|\\'g'/|-Gelados-|");
 	printf("\n|\\'b'/|-Bebidas-|");
@@ -487,6 +511,7 @@ void prog_precario_fornecedor(){
 	printf("\n|\\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
+	
 		switch(escolha){
 		case 'g':
 			system("cls");
@@ -613,6 +638,7 @@ void prog_precario_fornecedor(){
 }
 //menu de venda
 int menu_venda(){
+	
 	char categoria;
 	int qnt_produtos=0,pin=0,f=0,esco=0;
 	float preco_final=0,preco=0;
@@ -626,7 +652,9 @@ int menu_venda(){
 	printf("\n|\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&categ[i]);
+	
 	switch(categ[i]){
+		
 		case 'g':
 			
 			system("cls");
@@ -874,16 +902,20 @@ int menu_venda(){
 }
 //Função onde executa o termino defenitivo da venda
 void compra_finalizada(){
+	
 	num_vend[i]=i+1;
 	i++;
 	menu();
+	
 }
 //Menu onde se pode mudar o preço de cada categoria individualmente
 void prog_precario(){
+	
 	char escolha=0;
 	int esc;
 	int cert=0;
 	float p_temp=0.0;//preço temporario
+	
 	printf("\n|Qual a categoria que deseja mudar de preço?|");
 	printf("\n|\\'g'/|-Gelados-|");
 	printf("\n|\\'b'/|-Bebidas-|");
@@ -891,7 +923,9 @@ void prog_precario(){
 	printf("\n|\\'c'/|-Confeitaria-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
+	
 	switch(escolha){
+		
 		case 'g':
 			system("cls");
 			printf("\nSelecionou a categoria gelados.");
@@ -1019,15 +1053,20 @@ void prog_precario(){
 }
 //Menu onde mostra o histórico de compras feitas
 int prog_hist_vend(){
+	
 	system("cls");
+	
 	int x=0,ce=0,escolha;
+	
 	printf("\nPara ver o histórico geral digite 1");
 	printf("\nPara ver as as vendas de valor mais alto digite 2");
 	printf("\nPara ver as vendas individuais de cada categoria digite 3");
 	printf("\nPara ver o histórico inividual de cada cliente digite 4\n");
 	printf("\n\nEscolha-> ");
 	scanf("%i",&escolha);
+	
 	switch(escolha){
+		
 		case 1:
 			system("cls");
 			for(x=0;x<tot_de_compras;x++){
@@ -1054,7 +1093,9 @@ int prog_hist_vend(){
 }
 //Menu onde mostra os imostos gerais
 void prog_impostos(){
+	
 	system("cls");
+	
 	float imp_compras_men_12=0;
 	float imp_compras_sup_12=0;
 	float media_preco=0, media_prod=0;
@@ -1075,6 +1116,7 @@ void prog_impostos(){
 }
 //Menu de Venda
 void novaVenda(){
+	
 	//Define Variables
 	printf("\nIntroduza uma nova venda");
 	printf("\nInsira a sua referencia: ");
@@ -1138,9 +1180,13 @@ void menu(){
 	}		
 //Main function
 int main(){
+	
 	setlocale(LC_ALL, "portuguese");
+	
 	while(1){
-	printf("----Vendas de uma Padaria----");
-	menu();
+		
+		printf("----Vendas de uma Padaria----");
+		menu();
+		
 	}
 }
