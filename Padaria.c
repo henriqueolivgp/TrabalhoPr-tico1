@@ -90,6 +90,7 @@ void menu_imp_med(){
 	scanf("%i",&escolha); 
 	
 	switch(escolha){
+		
 		case 1:
 			
 			prog_impostos_categ();
@@ -420,6 +421,7 @@ void prog_impostos_categ(){
 			printf("\nMédia de preço: %.2f",media_precos);
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
+			printf("\n-> ");
 			scanf("%i",esc);
 			if(esc==1){
 				prog_impostos_categ();
@@ -442,6 +444,7 @@ void prog_impostos_categ(){
 			printf("\nMédia de preços: %.2f",media_precos);
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
+			printf("\n-> ");
 			scanf("%i",esc);
 			if(esc==1){
 				prog_impostos_categ();
@@ -463,6 +466,7 @@ void prog_impostos_categ(){
 			printf("\nMédia de preços: %.2f",media_precos);
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
+			printf("\n-> ");
 			scanf("%i",esc);
 			if(esc==1){
 				prog_impostos_categ();
@@ -484,6 +488,7 @@ void prog_impostos_categ(){
 			printf("\nMédia de preços: %.2f",media_precos);
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
+			printf("\n-> ");
 			scanf("%i",esc);
 			if(esc==1){
 				prog_impostos_categ();
@@ -531,6 +536,7 @@ void prog_precario_fornecedor(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -559,6 +565,7 @@ void prog_precario_fornecedor(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -590,6 +597,7 @@ void prog_precario_fornecedor(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -619,6 +627,7 @@ void prog_precario_fornecedor(){
 			printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 			printf("\n1 -> Voltar ao menu inicial");
 			printf("\n2 -> Mudar preçario de alguma categoria");
+			printf("\n-> ");
 			scanf("%i",&esc);
 				switch(esc){
 				case 1:
@@ -668,6 +677,7 @@ int menu_venda(){
 				printf("\nQuantidade acima do nosso stock.");
 				printf("\nDigite 1 para voltar a fazer uma compra.");
 				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&f);
 				if(f==1){
 					menu_venda();
@@ -708,6 +718,7 @@ int menu_venda(){
 				printf("\nCompra aprovada");
 				printf("\ndigite 1 para refazer uma compra.");
 				printf("\nDigite 2 para voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&esco);
 				if(esco==1){
 					repeticao_compra();
@@ -724,12 +735,14 @@ int menu_venda(){
 			printf("\nConfeitaria.");
 			printf("\nEm stock temos %i.", c);
 			printf("\nQuantos deseja comprar?");
+			printf("\n-> ");
 			scanf("%i",&qnt_produtos);
 			preco=p_c*qnt_produtos;
 			if(qnt_produtos>c){
 			printf("\nQuantidade acima do nosso stock.");
 			printf("\nDigite 1 para voltar a fazer uma compra.");
 			printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial\n");
+			printf("\n-> ");
 			scanf("%i",&f);
 			if(f==1){
 				menu_venda();
@@ -767,6 +780,7 @@ int menu_venda(){
 				printf("\nCompra aprovada");
 				printf("\ndigite 1 para refazer uma compra.");
 				printf("\nDigite 2 para voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&esco);
 				if(esco==1){
 					repeticao_compra();
@@ -782,12 +796,14 @@ int menu_venda(){
 			printf("\nBebidas.");
 			printf("\nEm stock temos %i.", b);
 			printf("\nQuantos deseja comprar?");
+			printf("\n-> ");
 			scanf("%i",&qnt_produtos);
 			preco=p_b*qnt_produtos;
 			if(qnt_produtos>b){
 				printf("\nQuantidade acima do nosso stock.");
 				printf("\nDigite 1 para voltar a fazer uma compra.");
 				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&f);
 				if(f==1){
 					menu_venda();
@@ -826,6 +842,7 @@ int menu_venda(){
 				printf("\nCompra aprovada");
 				printf("\ndigite 1 para refazer uma compra.");
 				printf("\nDigite 2 para voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&esco);
 				if(esco==1){
 					repeticao_compra();
@@ -842,12 +859,14 @@ int menu_venda(){
 			printf("\nEm stock temos %i.", p);
 			printf("\nQuantos deseja comprar?");
 			printf("\nDigite um numero acima do nosso stock para voltar ao menu inicial");
+			printf("\n-> ");
 			scanf("%i",&qnt_produtos);
 			preco=p_p*qnt_produtos;
 			if(qnt_produtos>p){
 				printf("\nQuantidade acima do nosso stock.");
 				printf("\nDigite 1 para voltar a fazer uma compra.");
 				printf("\nDigite 2 se decidiu desistir de fazer compras e quer voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&f);
 				if(f==1){
 					menu_venda();
@@ -887,6 +906,7 @@ int menu_venda(){
 				printf("\nCompra aprovada");
 				printf("\ndigite 1 para refazer uma compra.");
 				printf("\nDigite 2 para voltar ao menu inicial");
+				printf("\n-> ");
 				scanf("%i",&esco);
 				if(esco==1){
 					repeticao_compra();
@@ -944,6 +964,7 @@ void prog_precario(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -973,6 +994,7 @@ void prog_precario(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -1004,6 +1026,7 @@ void prog_precario(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -1033,6 +1056,7 @@ void prog_precario(){
 				printf("\nDeseja voltar ao meni inicial ou quer mudar o preçario de alguma categoria?");
 				printf("\n1 -> Voltar ao menu inicial");
 				printf("\n2 -> Mudar preçario de alguma categoria");
+				printf("\n-> ");
 				scanf("%i",&esc);
 				switch(esc){
 					case 1:
@@ -1089,6 +1113,7 @@ int prog_hist_vend(){
 	break;
 }
 	printf("\nPara voltar para o menu inicial digite 1\n");
+	printf("\n-> ");
 	scanf("%i",&ce);
 }
 //Menu onde mostra os imostos gerais
