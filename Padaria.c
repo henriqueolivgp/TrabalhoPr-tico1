@@ -81,10 +81,6 @@ void menu_imp_med(){
 	
 	printf("\nPara ver por cada categoria individual insira 1");
 	printf("\n2 -> Ver os impostos gerais");
-	printf("\n3 -> Ver as compras individuais por cliente");
-	printf("\n4 -> Ver as vendas superiores a média");
-	printf("\n5 -> Ver a compra mais alta");
-	printf("\n6 -> Ver a compra mais baixa");
 	printf("\nPara voltar ao menu inicial insira 7");
 	printf("\n-> ");
 	scanf("%i",&escolha); 
@@ -92,31 +88,17 @@ void menu_imp_med(){
 	switch(escolha){
 		
 		case 1:
-			
 			prog_impostos_categ();
 		break;
 		case 2:
 			prog_impostos();
 		break;
-		case 3:
-			historico_por_cliente();
-		break;
-		case 4:
-			vendas_sup_media();
-		break;
-		case 5:
-			historico_compra_mais_alta();
-		break;
-		case 6:
-			compra_mais_baixa();
-		break;
 	}
 }
-
-//
+//Menu onde mostra a compra mais baixa
 void compra_mais_baixa(){
 	
-		int x,z,o;
+		int x,z,o,v;
 		float a=8000,b=0;
 	
 	for(x = 0;x < tot_de_compras; x++){
@@ -130,13 +112,13 @@ void compra_mais_baixa(){
 			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
-	scanf("%i",&z);
+	printf("\nInsira 1 para voltar ao menu inicial");
+	scanf("%i",&v);
 }
-
 //Apresenta o historico individual de cada cliente
 void historico_por_cliente(){
 	
-	int x=0,t=0,e=0;
+	int x=0,t=0,e=0,v;
 	
 	printf("\nEscolha qual cliente deseja ver o historico");
 	for(x=0;x<tot_de_compras;x++){
@@ -149,13 +131,14 @@ void historico_por_cliente(){
 			printf("\nComprou %i de produtos na categoria %c e pagou %.2f",qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
+	printf("\nInsira 1 para voltar ao menu inicial");
+	scanf("%i",&v);
 }
-
 //Apresentar a quantidade de vendas com preço superior à média de todas as vendas;
 void vendas_sup_media(){
 	
 	float media=0;
-	int x=0;
+	int x=0,v;
 	
 	media=val_tot_comp/tot_de_compras;
 	for(x=0;x<tot_de_compras;x++){
@@ -163,11 +146,13 @@ void vendas_sup_media(){
 			printf("\nCompra numero %i, cliente nº %i, gastou %.2f",num_vend[x],cliente[x],val_venda[x]);
 		}
 	}
+	printf("\nInsira 1 para voltar ao menu inicial");
+	scanf("%i",&v);
 }
 //Menu de histórico de compra mais alta
 void historico_compra_mais_alta(){
 	
-	int x;
+	int x,v;
 	
 	float a=0,b=0;
 	for(x=0;x<tot_de_compras;x++){
@@ -179,6 +164,8 @@ void historico_compra_mais_alta(){
 			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
+	printf("\nInsira 1 para voltar ao menu inicial");
+	scanf("%i",&v);
 }
 //Repete a compra
 void repeticao_compra(){
@@ -407,6 +394,7 @@ void prog_impostos_categ(){
 	printf("\n|\'b'/|-Bebidas-|");
 	printf("\n|\'p'/|-Padaria-|");
 	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|\'m'/|-Main Menu-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
 	
@@ -501,6 +489,9 @@ void prog_impostos_categ(){
 				menu();
 			}
 		break;
+		case 'm':
+			main();
+		break;
 		default:
 			printf("\noperação invalida");
 		break;
@@ -519,6 +510,7 @@ void prog_precario_fornecedor(){
 	printf("\n|\\'b'/|-Bebidas-|");
 	printf("\n|\\'p'/|-Padaria-|");
 	printf("\n|\\'c'/|-Confeitaria-|");
+	printf("\n|\\'m'/|-Main Menu-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
 	
@@ -644,6 +636,9 @@ void prog_precario_fornecedor(){
 				break;
 			}
 		}
+		case 'm':
+			main();
+		break;
 		default:
 			printf("\noperação invalida");
 			main();
@@ -664,6 +659,7 @@ int menu_venda(){
 	printf("\n|\'b'/|-Bebidas-|");
 	printf("\n|\'p'/|-Padaria-|");
 	printf("\n|\'c'/|-Confeitaria-|");
+	printf("\n|\'m'/|-Main Menu-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&categ[i]);
 	
@@ -919,7 +915,9 @@ int menu_venda(){
 					compra_finalizada();
 				}
 		break;
-		
+		case 'm':
+			main();
+		break;
 		default:
 			printf("\noperação invalida");
 		break;
@@ -946,6 +944,7 @@ void prog_precario(){
 	printf("\n|\\'b'/|-Bebidas-|");
 	printf("\n|\\'p'/|-Padaria-|");
 	printf("\n|\\'c'/|-Confeitaria-|");
+	printf("\n|\\'m'/|-Main Menu-|");
 	printf("\n|-Escolha-| ");
 	scanf(" %c",&escolha);
 	
@@ -1073,7 +1072,9 @@ void prog_precario(){
 					break;
 				}
 			}
-			
+			case 'm':
+				main();
+			break;
 		default:
 			printf("\noperação invalida");
 			main();
@@ -1087,10 +1088,13 @@ int prog_hist_vend(){
 	
 	int x=0,ce=0,escolha;
 	
-	printf("\nPara ver o histórico geral digite 1");
-	printf("\nPara ver as as vendas de valor mais alto digite 2");
-	printf("\nPara ver as vendas individuais de cada categoria digite 3");
-	printf("\nPara ver o histórico inividual de cada cliente digite 4\n");
+	printf("\n		1 -> Ver o histórico geral;");
+	printf("\n		2 -> Ver as compras individuais por cliente;");
+	printf("\n		3 -> Ver as vendas superiores a média;");
+	printf("\n		4 -> Ver a compra mais alta;");
+	printf("\n		5 -> Ver a compra mais baixa;");
+	printf("\n		6 -> Ver as vendas individuais de cada categoria;");
+	printf("\n		7 -> Voltar ao menu inicial;");
 	printf("\n\nEscolha-> ");
 	scanf("%i",&escolha);
 	
@@ -1104,13 +1108,27 @@ int prog_hist_vend(){
 	break;
 	
 	case 2:
+		historico_por_cliente();
+	break;
+	
+	case 3:
+		vendas_sup_media();
+	break;
+	
+	case 4:
 		historico_compra_mais_alta();
 	break;
-	case 3:
+	
+	case 5:
+		compra_mais_baixa();
+	break;
+	
+	case 6:
 		historico_compras_categorias();
 	break;
-	case 4:
-		historico_por_cliente();
+	
+	case 7:
+		main();
 	break;
 	
 	default:
@@ -1131,7 +1149,8 @@ void prog_impostos(){
 	float media_preco=0, media_prod=0;
 	float imp_15=0.15;
 	float imp_19=0.19;
-	int escolha=0;
+	int escolha=0,v;
+	
 	val_tot_comp=val_tot_com_inf+val_tot_sup;
 	imp_compras_men_12 = val_tot_com_inf*imp_15;
 	imp_compras_sup_12 = val_tot_sup*imp_19;
@@ -1143,6 +1162,8 @@ void prog_impostos(){
 	printf("\nVai pagar %.2f de imposto das vendas com valor superior a 12euros.",imp_compras_sup_12);
 	printf("\nA media de valor de vendas é de %.2f",media_preco);
 	printf("\nA media de produtos vendidos é %.2f",media_prod);
+	printf("\n\n\n\nInsira 1 para voltar ao menu inicial");
+	scanf("%i",&v);
 }
 //Menu de Venda
 void novaVenda(){
@@ -1178,29 +1199,23 @@ void menu(){
 		
 		case 1:
 			novaVenda();
-			menu();
 		break;
 
 		case 2:
 			prog_hist_vend();
-			menu();
 		break;
 		
 		case 3:
 			prog_categ();
-			menu();
 		break;
 		case 4:
 			prog_precario();
-			menu();
 		break;
 		case 5:
 			menu_imp_med();
-			menu();
 		break;
 		case 6:
 			prog_precario_fornecedor();
-			menu();
 		break;
 	
 		default:
