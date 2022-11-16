@@ -113,6 +113,7 @@ void menu_imp_med(){
 	}
 }
 
+//
 void compra_mais_baixa(){
 	
 		int x;
@@ -120,10 +121,10 @@ void compra_mais_baixa(){
 	float a=80000,b=0;
 	for(x=0;x<tot_de_compras;x++){
 		if(a>val_venda[x]){
-			a=val_venda[x];
+			b=val_venda[x];
 		}
 	}for(x=0;x<tot_de_compras;x++){
-		if(a==val_venda[x]){
+		if(b==val_venda[x]){
 			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
@@ -146,6 +147,7 @@ void historico_por_cliente(){
 		}
 	}
 }
+
 //Apresentar a quantidade de vendas com preço superior à média de todas as vendas;
 void vendas_sup_media(){
 	
