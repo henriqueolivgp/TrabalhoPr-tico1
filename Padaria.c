@@ -90,30 +90,40 @@ void menu_imp_med(){
 	switch(escolha){
 		
 		case 1:
+			
 			prog_impostos_categ();
+		
 		break;
+		
 		case 2:
+		
 			prog_impostos();
+		
 		break;
 	}
 }
 //Menu onde mostra a compra mais baixa
 void compra_mais_baixa(){
 	
-		int x,z,o,v;
-		float a=8000,b=0;
+	int x,z,o,v;
+	
+	float a=8000,b=0;
 	
 	for(x = 0;x < tot_de_compras; x++){
+	
 		if(a>val_venda[x]){
 			b=val_venda[x];
 			o++;
 		}
 	}
+	
 	for(x=0;x<o;x++){
+	
 		if(b==val_venda[x]){
 			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
+	
 	printf("\nInsira 1 para voltar ao menu inicial");
 	scanf("%i",&v);
 }
@@ -123,16 +133,20 @@ void historico_por_cliente(){
 	int x=0,t=0,e=0,v;
 	
 	printf("\nEscolha qual cliente deseja ver o historico");
+
 	for(x=0;x<tot_de_compras;x++){
 		printf("\nCliente nº %i",cliente[x]);
 	}
+
 	printf("\nEscolha-> ");
 	scanf("%i",&e);
+
 	for(x=0;x<tot_de_compras;x++){
 		if(cliente[x]==e){
 			printf("\nComprou %i de produtos na categoria %c e pagou %.2f",qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
+
 	printf("\nInsira 1 para voltar ao menu inicial");
 	scanf("%i",&v);
 }
@@ -143,11 +157,13 @@ void vendas_sup_media(){
 	int x=0,v;
 	
 	media=val_tot_comp/tot_de_compras;
+
 	for(x=0;x<tot_de_compras;x++){
 		if(val_venda[x]>=media){
 			printf("\nCompra numero %i, cliente nº %i, gastou %.2f",num_vend[x],cliente[x],val_venda[x]);
 		}
 	}
+
 	printf("\nInsira 1 para voltar ao menu inicial");
 	scanf("%i",&v);
 }
@@ -157,15 +173,19 @@ void historico_compra_mais_alta(){
 	int x,v;
 	
 	float a=0,b=0;
+
 	for(x=0;x<tot_de_compras;x++){
 		if(a<val_venda[x]){
 			a=val_venda[x];
 		}
-	}for(x=0;x<tot_de_compras;x++){
+	}
+	
+	for(x=0;x<tot_de_compras;x++){
 		if(a==val_venda[x]){
 			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
+	
 	printf("\nInsira 1 para voltar ao menu inicial");
 	scanf("%i",&v);
 }
@@ -198,42 +218,63 @@ void historico_compras_categorias(){
 	switch(categoria){
 		
 		case 'g':
+		
 			t=q_v_sup_12_g+q_v_inf_12_g;
+		
 			for(x=0;x<t;x++){
 				if(categ[i]='g'){
 					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
 				}
 			}
+		
 		break;
+		
 		case 'b':
+		
 			t=q_v_sup_12_b+q_v_inf_12_b;
+		
 			for(x=0;x<t;x++){
 				if(categ[i]='b'){
 					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
 				}
 			}
+		
 		break;
+		
 		case 'p':
+		
 			t=q_v_sup_12_p+q_v_inf_12_p;
+		
 			for(x=0;x<t;x++){
 				if(categ[i]='b'){
 					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
 				}
 			}
+		
 		break;
+		
 		case 'c':
+		
 			t=q_v_sup_12_c+q_v_inf_12_c;
+		
 			for(x=0;x<t;x++){
 				if(categ[i]='b'){
 					printf("\nA compra numero %i cliente numero %i pagou %.2f",num_vend[x],cliente[x],val_venda[x]);
 				}
 			}
+		
 		break;
+		
 		case 'm':
+		
 			main();
+		
 		break;
+		
 		default:
+		
 			printf("\nOperação ivalida.");
+		
 		break;
 	}
 }
@@ -266,20 +307,25 @@ void prog_categ(){
 			printf("\\|-|/|retirar|\n");
 			printf("Escolha: ");
 			scanf(" %c", &alterar);
+		
 			if(alterar == '-'){
 				printf("\nQuantidade a retirar: ");
 				scanf("%i", &x);
 				g=g-x;
-			}if(alterar == '+'){
+			}
+			
+			if(alterar == '+'){
 				printf("\nQuantidade a adicionar: ");
 				scanf("%i",&x);
 				g=g+x;
 			}
+			
 			system("cls");
 			printf("\nAgora tem %i no stock de gelados",g);
 			printf("\nDeseja fazer mais alguma alteração numa outra categoria?");
 			printf("\n|1 = SIM|0 = NÃO|\nEscolha: ");
 			scanf("%i",&cert);
+			
 			if(cert==1){
 				prog_categ();
 			}else{
@@ -289,6 +335,7 @@ void prog_categ(){
 		break;
 		
 		case 'c':
+			
 			system("cls");
 			printf("\nConfeitaria.");
 			printf("\nTem %i no stock de confeitaria",c);
