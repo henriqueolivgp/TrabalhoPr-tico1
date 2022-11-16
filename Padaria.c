@@ -107,7 +107,7 @@ void menu_imp_med(){
 		case 5:
 			historico_compra_mais_alta();
 		break;
-		case 7:
+		case 6:
 			compra_mais_baixa();
 		break;
 	}
@@ -116,18 +116,21 @@ void menu_imp_med(){
 //
 void compra_mais_baixa(){
 	
-		int x;
-		
-	float a=80000,b=0;
-	for(x=0;x<tot_de_compras;x++){
+		int x,z,o;
+		float a=8000,b=0;
+	
+	for(x = 0;x < tot_de_compras; x++){
 		if(a>val_venda[x]){
 			b=val_venda[x];
+			o++;
 		}
-	}for(x=0;x<tot_de_compras;x++){
+	}
+	for(x=0;x<o;x++){
 		if(b==val_venda[x]){
 			printf("\nCompra numero %i com o numero de cliente %i comprou %i na categoria %c e pagou %.2f.",num_vend[x],cliente[x],qnt_prod_vend[x],categ[x],val_venda[x]);
 		}
 	}
+	scanf("%i",&z);
 }
 
 //Apresenta o historico individual de cada cliente
@@ -194,7 +197,7 @@ void historico_compras_categorias(){
 	char categoria;
 	int t=0,x=0;
 	
-	printf("\nQual é a categoria que deseja alterar o stock:");
+	printf("\nQual é a categoria que deseja ver o histórico:");
 	printf("\n|\'g'/|-Gelados-|");
 	printf("\n|\'b'/|-Bebidas-|");
 	printf("\n|\'p'/|-Padaria-|");
