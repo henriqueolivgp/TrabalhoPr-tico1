@@ -64,7 +64,9 @@ float val_venda[max];//Valor de venda de cada venda executada
 char categ[max];//Categoria da qual foi feita a compra
 int i=0;//indice das vareaveis
 
+
 void menu(void);
+void menu_venda(void);
 void compra_finalizada(void);
 void compra_mais_baixa(void);
 void historico_por_cliente(void);
@@ -77,7 +79,7 @@ void prog_impostos(void);
 //menu onde escolhemos o que queremos ver, se é as medias ou os impostos
 void menu_imp_med(){
 	
-	int escolha;
+	int escolha;//vareavel de escolha
 	
 	printf("\nPara ver por cada categoria individual insira 1");
 	printf("\n2 -> Ver os impostos gerais");
@@ -236,7 +238,7 @@ void historico_compras_categorias(){
 	}
 }
 //menu de alteração de stock
-int prog_categ(){
+void prog_categ(){
 	
 	char categoria;
 	char alterar='\0',certa;
@@ -646,7 +648,7 @@ void prog_precario_fornecedor(){
 	}
 }
 //menu de venda
-int menu_venda(){
+void menu_venda(){
 	
 	char categoria;
 	int qnt_produtos=0,pin=0,f=0,esco=0;
@@ -1088,13 +1090,13 @@ int prog_hist_vend(){
 	
 	int x=0,ce=0,escolha;
 	
-	printf("\n		1 -> Ver o histórico geral;");
-	printf("\n		2 -> Ver as compras individuais por cliente;");
-	printf("\n		3 -> Ver as vendas superiores a média;");
-	printf("\n		4 -> Ver a compra mais alta;");
-	printf("\n		5 -> Ver a compra mais baixa;");
-	printf("\n		6 -> Ver as vendas individuais de cada categoria;");
-	printf("\n		7 -> Voltar ao menu inicial;");
+	printf("\n1 -> Ver o histórico geral;");
+	printf("\n2 -> Ver as compras individuais por cliente;");
+	printf("\n3 -> Ver as vendas superiores a média;");
+	printf("\n4 -> Ver a compra mais alta;");
+	printf("\n5 -> Ver a compra mais baixa;");
+	printf("\n6 -> Ver as vendas individuais de cada categoria;");
+	printf("\n7 -> Voltar ao menu inicial;");
 	printf("\n\nEscolha-> ");
 	scanf("%i",&escolha);
 	
@@ -1234,4 +1236,5 @@ int main(){
 		menu();
 		
 	}
+	return 0;
 }
