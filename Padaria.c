@@ -464,7 +464,7 @@ void prog_impostos_categ(){
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
 			printf("\n-> ");
-			scanf("%i",esc);
+			scanf("%i",&esc);
 			if(esc==1){
 				prog_impostos_categ();
 			}if(esc==2){
@@ -487,7 +487,7 @@ void prog_impostos_categ(){
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
 			printf("\n-> ");
-			scanf("%i",esc);
+			scanf("%i",&esc);
 			if(esc==1){
 				prog_impostos_categ();
 			}if(esc==2){
@@ -509,7 +509,7 @@ void prog_impostos_categ(){
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
 			printf("\n-> ");
-			scanf("%i",esc);
+			scanf("%i",&esc);
 			if(esc==1){
 				prog_impostos_categ();
 			}if(esc==2){
@@ -531,7 +531,7 @@ void prog_impostos_categ(){
 			printf("\n\n\nPara ver os dados de outra categoria digite 1");
 			printf("\nPara voltar ao menu inicial digite 2");
 			printf("\n-> ");
-			scanf("%i",esc);
+			scanf("%i",&esc);
 			if(esc==1){
 				prog_impostos_categ();
 			}if(esc==2){
@@ -539,7 +539,7 @@ void prog_impostos_categ(){
 			}
 		break;
 		case 'm':
-			main();
+			menu();
 		break;
 		default:
 			printf("\noperação invalida");
